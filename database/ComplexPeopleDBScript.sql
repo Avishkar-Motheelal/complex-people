@@ -1,7 +1,7 @@
 -- Create Database
 CREATE DATABASE ComplexPeople
 GO
-
+	
 USE ComplexPeople
 GO
 
@@ -38,11 +38,9 @@ CREATE TABLE [People] (
   [First Name] NVARCHAR(50) NOT NULL,
   [Last Name] NVARCHAR(50) NOT NULL,
   [IdentificationDocumentsId] INT NOT NULL,
-  [PhotosId] INT,
   [ContactDetailsId] INT,
   PRIMARY KEY ([PeopleId]),
   FOREIGN KEY ([IdentificationDocumentsId]) REFERENCES IdentificationDocuments([IdentificationDocumentsId]),
-  FOREIGN KEY ([PhotosId]) REFERENCES Photos([PhotosId]),
   FOREIGN KEY ([ContactDetailsId]) REFERENCES ContactDetails([ContactDetailsId])
 );
 
@@ -73,9 +71,11 @@ CREATE TABLE [Visits] (
   [ApartmentsId] INT NOT NULL,
   [DateIn] DATETIMEOFFSET NOT NULL,
   [DateOut] DATETIMEOFFSET NULL,
+  [PhotosId] INT,
   PRIMARY KEY ([VisitsId]),
   FOREIGN KEY ([VisitorId]) REFERENCES People([PeopleId]),
-  FOREIGN KEY ([ApartmentsId]) REFERENCES Apartments([ApartmentsId])
+  FOREIGN KEY ([ApartmentsId]) REFERENCES Apartments([ApartmentsId]),
+  FOREIGN KEY ([PhotosId]) REFERENCES Photos([PhotosId])
 );
 
 CREATE TABLE [ApartmentsPeople] (
