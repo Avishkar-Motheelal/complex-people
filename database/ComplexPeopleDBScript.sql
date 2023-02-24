@@ -29,14 +29,14 @@ CREATE TABLE [Photos] (
 CREATE TABLE [ContactDetails] (
   [ContactDetailsId] INT IDENTITY(1,1) NOT NULL,
   [PhoneNumber] NVARCHAR(15) NOT NULL,
-  [EmaillAddress] NVARCHAR(255) NULL,
+  [EmailAddress] NVARCHAR(255) NULL,
   PRIMARY KEY ([ContactDetailsId])
 );
 
 CREATE TABLE [People] (
   [PeopleId] INT IDENTITY(1,1) NOT NULL,
-  [First Name] NVARCHAR(50) NOT NULL,
-  [Last Name] NVARCHAR(50) NOT NULL,
+  [FirstName] NVARCHAR(50) NOT NULL,
+  [LastName] NVARCHAR(50) NOT NULL,
   [IdentificationDocumentsId] INT NOT NULL,
   [ContactDetailsId] INT,
   PRIMARY KEY ([PeopleId]),
@@ -88,7 +88,7 @@ CREATE TABLE [ApartmentsPeople] (
 );
 
 CREATE TABLE [AccessCards] (
-  [AccessCardsId] INT IDENTITY(1,1) NOT NULL,
+  [AccessCardsId] UNIQUEIDENTIFIER NOT NULL,
   [Activated] BIT NOT NULL,
   [PeopleId] INT NOT NULL,
   PRIMARY KEY ([AccessCardsId]),

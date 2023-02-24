@@ -9,11 +9,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "ContactDetails")
-public class ContactDetail {
+public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer contactDetailsId;
-    private String phoneNumber;
-    private String emailAddress;
+    private Integer statusId;
+    private String status;
 }

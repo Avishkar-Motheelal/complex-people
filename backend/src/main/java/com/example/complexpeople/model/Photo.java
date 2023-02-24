@@ -8,12 +8,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
-@Table(name = "ContactDetails")
-public class ContactDetail {
+@Table
+@Entity(name = "Photos")
+public class Photo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer contactDetailsId;
-    private String phoneNumber;
-    private String emailAddress;
+    private Integer photosId;
+    private String photoUrl;
 }
