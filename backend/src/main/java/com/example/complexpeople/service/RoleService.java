@@ -1,7 +1,6 @@
 package com.example.complexpeople.service;
 
 import com.example.complexpeople.exception.NotFoundException;
-import com.example.complexpeople.exception.ValidationException;
 import com.example.complexpeople.model.Role;
 import com.example.complexpeople.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,12 +31,5 @@ public class RoleService {
 
     public Role getById(int id) {
         return roleRepository.findById(id).orElseThrow(() -> new NotFoundException("Role with specified id not found"));
-    }
-
-
-    public Role update(Role role) {
-        getById(role.getRoleId());
-        if (role.getRoleName() == null) throw new ValidationException("Role name should be specified");
-        return createOrUpdate(role);
     }
 }

@@ -1,30 +1,23 @@
 package com.example.complexpeople.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "Roles")
-@NoArgsConstructor
 public class Role {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int roleId;
-    private String roleName;
-    @OneToMany(mappedBy = "role")
-    @JsonIgnore
-    private List<User> user = new ArrayList<>();
+    private Integer rolesId;
+    private String type;
 
 
-    public Role(String roleName) {
-        this.roleName = roleName;
+    public Role(String type) {
     }
 }
