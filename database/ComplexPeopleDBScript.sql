@@ -121,3 +121,6 @@ CREATE TABLE [Complaints] (
   FOREIGN KEY ([Complainant]) REFERENCES ApartmentsPeople([ApartmentsPeopleId]),
   FOREIGN KEY ([Respondent]) REFERENCES People([PeopleId])
 );
+
+INSERT INTO [DocumentTypes]([Type]) VALUES ('PASSPORT'), ('ID');
+INSERT INTO [Roles]([Type]) VALUES ('STAFF'), ('RESIDENT'), ('VISITOR');

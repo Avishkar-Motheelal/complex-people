@@ -17,7 +17,7 @@ public class AccessCard {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(columnDefinition = "uuid")
     private UUID accessCardsId;
-    private Boolean activated;
+    private boolean activated;
     @ManyToOne()
     @JoinColumn(name = "PeopleId")
     private Person person;

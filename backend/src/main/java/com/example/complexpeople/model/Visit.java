@@ -17,14 +17,14 @@ public class Visit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer visitsId;
     @OneToOne
-    @Column(name = "visitorId")
+    @JoinColumn(name = "visitorId")
     private Person visitor;
     @OneToOne
-    @Column(name = "apartmentsId")
+    @JoinColumn(name = "apartmentsId")
     private Apartment apartment;
     private OffsetDateTime dateIn;
     private OffsetDateTime dateOut;
     @OneToOne
-    @Column(name = "photosId")
+    @JoinColumn(name = "photosId")
     private Photo photo;
 }
