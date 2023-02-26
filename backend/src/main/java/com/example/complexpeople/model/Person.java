@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -14,12 +17,22 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer peopleId;
+
     private String firstName;
+
     private String lastName;
-    @OneToOne
-    @Column(name = "IdentificationDocumentsId")
+
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "IdentificationDocumentsId")
     private IdentificationDocument identificationDocument;
-    @OneToOne
-    @Column(name = "contactDetailsId")
+
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "contactDetailsId")
     private ContactDetail contactDetail;
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "RolesPeople",
+            joinColumns = @JoinColumn(name = "peopleId"),
+            inverseJoinColumns = @JoinColumn(name = "rolesId"))
+    private List<Role> roles = new ArrayList<>();
 }

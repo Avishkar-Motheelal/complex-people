@@ -15,5 +15,6 @@ public class DocumentType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer documentTypesId;
+
     private String type;
 }

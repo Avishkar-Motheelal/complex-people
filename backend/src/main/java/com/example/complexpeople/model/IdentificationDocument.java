@@ -11,11 +11,14 @@ import lombok.Setter;
 @Entity
 @Table(name = "IdentificationDocuments")
 public class IdentificationDocument {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer identificationDocumentsId;
+
     private String number;
-    @ManyToOne
-    @Column(name = "DocumentTypesId")
+
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "DocumentTypesId")
     private DocumentType documentType;
 }
