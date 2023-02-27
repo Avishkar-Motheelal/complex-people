@@ -63,6 +63,7 @@ public class ControllerAdvisor {
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
+
     @ApiResponse(responseCode = "400")
     @ExceptionHandler(PersonExistsException.class)
     public ResponseEntity<Object> handleIdentificationExists(PersonExistsException exception) {
@@ -70,6 +71,8 @@ public class ControllerAdvisor {
         ExceptionBody body = new ExceptionBody(dateTime, exception.getMessage());
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
+
+
     @ApiResponse(responseCode = "400")
     @ExceptionHandler(RoleAlreadyAssignedException.class)
     public ResponseEntity<Object> handleRoleExistsException(RoleAlreadyAssignedException exception) {
@@ -77,6 +80,7 @@ public class ControllerAdvisor {
         ExceptionBody body = new ExceptionBody(dateTime, exception.getMessage());
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
+
 
     @ApiResponse(responseCode = "400")
     @ExceptionHandler(RoleNotAssignedException.class)
@@ -86,6 +90,7 @@ public class ControllerAdvisor {
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
+
     @ApiResponse(responseCode = "400")
     @ExceptionHandler(ApartmentExistsException.class)
     public ResponseEntity<Object> handleApartmentExists(ApartmentExistsException exception) {
@@ -94,6 +99,7 @@ public class ControllerAdvisor {
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
+
     @ApiResponse(responseCode = "404")
     @ExceptionHandler(ApartmentNotFoundException.class)
     public ResponseEntity<Object> handleApartmentNotFound(ApartmentNotFoundException exception) {
@@ -101,5 +107,4 @@ public class ControllerAdvisor {
         ExceptionBody body = new ExceptionBody(dateTime, exception.getMessage());
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
-
 }
