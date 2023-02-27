@@ -14,4 +14,8 @@ public class Status {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer statusId;
     private String status;
+
+    public Status(Integer statusId) {
+        this.statusId = statusId;
+    }
 }
