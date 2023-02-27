@@ -71,14 +71,6 @@ public class ControllerAdvisor {
     }
 
 
-    @ApiResponse(responseCode = "400")
-    @ExceptionHandler(IdentificationDocumentNumberException.class)
-    public ResponseEntity<Object> handleIdOrPassportNotProvidedException(IdentificationDocumentNumberException exception) {
-        String dateTime = OffsetDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
-        ExceptionBody body = new ExceptionBody(dateTime, exception.getMessage());
-        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
-    }
-
 
     @ApiResponse(responseCode = "400")
     @ExceptionHandler(PersonExistsException.class)

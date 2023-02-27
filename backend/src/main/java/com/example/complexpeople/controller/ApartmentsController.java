@@ -2,7 +2,6 @@ package com.example.complexpeople.controller;
 
 import com.example.complexpeople.dto.NewApartmentDTO;
 import com.example.complexpeople.exception.*;
-import com.example.complexpeople.mappers.ApartmentMapper;
 import com.example.complexpeople.model.Apartment;
 import com.example.complexpeople.model.Person;
 import com.example.complexpeople.repository.ApartmentsRepository;
@@ -12,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/apartments")
@@ -30,44 +28,29 @@ public class ApartmentsController {
     @PostMapping
     public Apartment addApartment(@RequestBody @Valid NewApartmentDTO newApartmentDTO) throws ApartmentExistsException {
         // make sure apartment doesn't already exist
-        if (apartmentsRepo.existsByUnitNumberIgnoreCase(newApartmentDTO.unitNumber())) {
+        if (apartmentsRepo.existsByUnitNumberIgnoreCase(newApartmentDTO.getUnitNumber())) {
             throw new ApartmentExistsException();
         }
-        Apartment apartment = ApartmentMapper.newApartmentDTOToApartment(newApartmentDTO);
+
+        Apartment apartment = NewApartmentDTO.toEntity(newApartmentDTO);
 
         return apartmentsRepo.save(apartment);
     }
 
     @GetMapping("{id}/people")
     public Apartment getPeopleInSpecificApartment(@PathVariable Integer id) throws ApartmentNotFoundException {
-        Optional<Apartment> optionalApartment = apartmentsRepo.findById(id);
-        if (optionalApartment.isEmpty()) {
-            throw new ApartmentNotFoundException();
-        }
-        return optionalApartment.get();
+        return apartmentsRepo.findById(id).orElseThrow(ApartmentNotFoundException::new);
     }
 
     @PostMapping("/{apartmentId}/people/{personId}")
     public Apartment addExistingPersonToApartment(@PathVariable Integer apartmentId, @PathVariable Integer personId) throws PersonNotFoundException, ApartmentNotFoundException, PersonExistsException {
-        // make sure person exists
-        Optional<Person> optionalPerson = peopleRepo.findById(personId);
-        if (optionalPerson.isEmpty()) {
-            throw new PersonNotFoundException();
-        }
+        Person person = peopleRepo.findById(personId).orElseThrow(PersonNotFoundException::new);
+        Apartment apartment = apartmentsRepo.findById(apartmentId).orElseThrow(ApartmentNotFoundException::new);
 
-        // get the person
-        Person person = optionalPerson.get();
-
-        Optional<Apartment> optionalApartment = apartmentsRepo.findById(apartmentId);
-        if (optionalApartment.isEmpty()) {
-            throw new ApartmentNotFoundException();
-        }
-
-        Apartment apartment = optionalApartment.get();
         List<Person> people = apartment.getPeople();
 
-        boolean exists = people.stream().anyMatch(v -> v.getPeopleId().equals(personId));
-        if (exists) {
+        boolean alreadyLivesInApartment = people.stream().anyMatch(v -> v.getPeopleId().equals(personId));
+        if (alreadyLivesInApartment) {
             throw new PersonExistsException();
         }
 
@@ -80,23 +63,13 @@ public class ApartmentsController {
 
     @DeleteMapping("/{apartmentId}/people/{personId}")
     public Apartment removePersonFromApartment(@PathVariable Integer apartmentId, @PathVariable Integer personId) throws PersonNotFoundException, ApartmentNotFoundException, PersonNotAssociatedException {
-        Optional<Person> optionalPerson = peopleRepo.findById(personId);
-        if (optionalPerson.isEmpty()) {
-            throw new PersonNotFoundException();
-        }
+        Person person = peopleRepo.findById(personId).orElseThrow(PersonNotFoundException::new);
+        Apartment apartment = apartmentsRepo.findById(apartmentId).orElseThrow(ApartmentNotFoundException::new);
 
-        Person person = optionalPerson.get();
-
-        Optional<Apartment> optionalApartment = apartmentsRepo.findById(apartmentId);
-        if (optionalApartment.isEmpty()) {
-            throw new ApartmentNotFoundException();
-        }
-
-        Apartment apartment = optionalApartment.get();
         List<Person> people = apartment.getPeople();
 
-        boolean exists = people.stream().anyMatch(v -> v.getPeopleId().equals(personId));
-        if (!exists) {
+        boolean alreadyLivesInApartment = people.stream().anyMatch(v -> v.getPeopleId().equals(personId));
+        if (!alreadyLivesInApartment) {
             throw new PersonNotAssociatedException();
         }
 
