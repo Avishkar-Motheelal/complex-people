@@ -1,0 +1,34 @@
+/* Sticky Header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+nav {
+  background-color: #fff;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 1vw 5vw;
+}
+
+nav li {
+  list-style: none;
+}
+
+nav img {
+  height: 70px;
+  width: auto;
+}
+
+nav a {
+  color: inherit;
+  text-decoration: none;
+  font-size: x-large;
+}
