@@ -5,10 +5,7 @@ import com.example.complexpeople.exception.ApartmentNotFoundException;
 import com.example.complexpeople.exception.ComplaintChangeException;
 import com.example.complexpeople.exception.ComplaintNotFoundException;
 import com.example.complexpeople.exception.PersonNotFoundException;
-import com.example.complexpeople.model.ApartmentsPeople;
-import com.example.complexpeople.model.Complaint;
-import com.example.complexpeople.model.Person;
-import com.example.complexpeople.model.Status;
+import com.example.complexpeople.model.*;
 import com.example.complexpeople.repository.ApartmentsPeopleRepository;
 import com.example.complexpeople.repository.ComplaintRepository;
 import com.example.complexpeople.repository.PeopleRepository;
@@ -16,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -74,11 +71,10 @@ public class ComplaintService {
     public Complaint createComplaint(ComplaintDTO complaintDTO) throws ApartmentNotFoundException {
 
         ApartmentsPeople apartmentsPeople = apartmentsPeopleRepository
-                .findByApartmentsIdAndPeopleId(complaintDTO.apartmentNo(), complaintDTO.personId())
+                .findByApartmentsIdAndPeopleId(new Apartment(complaintDTO.apartmentNo()), new Person(complaintDTO.personId()))
                 .orElseThrow(ApartmentNotFoundException::new);
 
-        ZoneOffset zoneOffSet = ZoneOffset.of("+02:00");
-        OffsetDateTime offsetDateTime = OffsetDateTime.now(zoneOffSet);
+        OffsetDateTime offsetDateTime = OffsetDateTime.parse(OffsetDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME));
 
         return complaintRepository.save(new Complaint(complaintDTO.complaintType(),
                 complaintDTO.description(),

@@ -75,8 +75,8 @@ public class ControllerAdvisor {
 
 
     @ApiResponse(responseCode = "400")
-    @ExceptionHandler(IdentificationDocumentNumberExceiption.class)
-    public ResponseEntity<Object> handleIdOrPassportNotProvidedException(IdentificationDocumentNumberExceiption ex, WebRequest request) {
+    @ExceptionHandler(IdentificationDocumentNumberException.class)
+    public ResponseEntity<Object> handleIdOrPassportNotProvidedException(IdentificationDocumentNumberException ex, WebRequest request) {
         Map<String, Object> body = new HashMap<>();
         body.put("message", ex.getMessage());
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);

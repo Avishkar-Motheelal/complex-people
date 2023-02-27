@@ -25,4 +25,7 @@ public class Apartment {
             inverseJoinColumns = @JoinColumn(name = "PeopleId"))
     private List<Person> people = new ArrayList<>();
 
+    public Apartment(int apartmentNo) {
+        this.apartmentsId = apartmentNo;
+    }
 }

@@ -14,7 +14,11 @@ public class ApartmentsPeople {
     private int apartmentsPeopleId;
 
 
-    private int peopleId;
+    @ManyToOne
+    @JoinColumn(name = "PeopleId", referencedColumnName = "PeopleId")
+    private Person peopleId;
 
-    private int apartmentsId;
+    @ManyToOne
+    @JoinColumn(name = "ApartmentsId", referencedColumnName = "ApartmentsId")
+    private Apartment apartmentsId;
 }
