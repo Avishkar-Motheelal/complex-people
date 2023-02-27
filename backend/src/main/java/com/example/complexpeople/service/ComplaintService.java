@@ -4,7 +4,7 @@ import com.example.complexpeople.dto.ComplaintDTO;
 import com.example.complexpeople.exception.NotFoundException;
 import com.example.complexpeople.model.ApartmentsPeople;
 import com.example.complexpeople.model.Complaint;
-import com.example.complexpeople.model.People;
+import com.example.complexpeople.model.Person;
 import com.example.complexpeople.model.Status;
 import com.example.complexpeople.repository.ApartmentsPeopleRepository;
 import com.example.complexpeople.repository.ComplaintRepository;
@@ -70,7 +70,7 @@ public class ComplaintService {
             }
 
             if (staffId != 0) {
-                Optional<People> people = peopleRepository.findById(staffId);
+                Optional<Person> people = peopleRepository.findById(staffId);
                 if (people.isPresent()) {
                     complaint1.setRespondent(people.get());
                 } else {

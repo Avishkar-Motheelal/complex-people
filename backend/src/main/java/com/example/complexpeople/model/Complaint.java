@@ -31,7 +31,7 @@ public class Complaint {
 
     @OneToOne
     @JoinColumn(name = "Respondent", referencedColumnName = "peopleId")
-    private People respondent;
+    private Person respondent;
 
 
     public Complaint(int complaintType, String description, OffsetDateTime date, ApartmentsPeople complainant) {
