@@ -1,12 +1,18 @@
 package com.example.complexpeople.dto;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+import com.example.complexpeople.model.ContactDetail;
+import com.example.complexpeople.model.IdentificationDocument;
+import com.example.complexpeople.model.Person;
+import com.example.complexpeople.model.Role;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,9 +24,9 @@ public class NewPersonDTO {
     @NotNull
     private String lastName;
 
-    private String idNumber;
-
-    private String passportNumber;
+    @NotNull
+    @JsonProperty("identificationDocument")
+    private IdentificationDocumentDTO identificationDocumentDTO;
 
     @NotNull
     @NotBlank
@@ -31,8 +37,28 @@ public class NewPersonDTO {
     @NotBlank
     private String emailAddress;
 
-    @Pattern(regexp = "^(staff|resident|visitor)$", flags = Pattern.Flag.CASE_INSENSITIVE, message = "User type must be 'staff', 'resident' or 'visitor'")
-    @Schema(description = "The type of user", allowableValues = {"staff", "resident", "visitor"})
-    private String roleType;
+    @NotNull
+    @JsonProperty("role")
+    private RoleDTO roleDTO;
+
+    public static Person toEntity(NewPersonDTO newPersonDTO) {
+        IdentificationDocument document = IdentificationDocumentDTO.toEntity(newPersonDTO.getIdentificationDocumentDTO());
+
+        ContactDetail contactDetail = new ContactDetail();
+        contactDetail.setPhoneNumber(newPersonDTO.getPhoneNumber());
+        contactDetail.setEmailAddress(newPersonDTO.getEmailAddress());
+
+        List<Role> roles = new ArrayList<>();
+        roles.add(RoleDTO.toEntity(newPersonDTO.getRoleDTO()));
+
+        Person person = new Person();
+        person.setFirstName(newPersonDTO.getFirstName());
+        person.setLastName(newPersonDTO.getLastName());
+        person.setIdentificationDocument(document);
+        person.setContactDetail(contactDetail);
+        person.setRoles(roles);
+
+        return person;
+    }
 
 }

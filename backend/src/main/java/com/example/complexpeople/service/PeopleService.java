@@ -3,14 +3,20 @@ package com.example.complexpeople.service;
 import com.example.complexpeople.dto.NewPersonDTO;
 import com.example.complexpeople.dto.RoleDTO;
 import com.example.complexpeople.dto.UpdatePersonDTO;
-import com.example.complexpeople.exception.*;
-import com.example.complexpeople.mappers.PersonMapper;
+import com.example.complexpeople.exception.PersonExistsException;
+import com.example.complexpeople.exception.PersonNotFoundException;
+import com.example.complexpeople.exception.RoleAlreadyAssignedException;
+import com.example.complexpeople.exception.RoleNotAssignedException;
+import com.example.complexpeople.model.DocumentType;
 import com.example.complexpeople.model.Person;
 import com.example.complexpeople.model.Role;
+import com.example.complexpeople.repository.DocumentTypeRepository;
 import com.example.complexpeople.repository.PeopleRepository;
+import com.example.complexpeople.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,6 +24,8 @@ import java.util.List;
 public class PeopleService {
 
     private final PeopleRepository peopleRepo;
+    private final RoleRepository roleRepo;
+    private final DocumentTypeRepository documentTypeRepository;
 
 
     public Iterable<Person> findAll() {
@@ -30,29 +38,56 @@ public class PeopleService {
     }
 
 
-    public Person addPerson(NewPersonDTO newPersonDTO) throws IdentificationDocumentNumberException, PersonExistsException {
-        if (identificationNumberMissing(newPersonDTO.getIdNumber(), newPersonDTO.getPassportNumber())) {
-            throw new IdentificationDocumentNumberException();
-        }
+    public Person addPerson(NewPersonDTO newPersonDTO) throws PersonExistsException {
 
-        String newPersonDTOIdentificationNumber = newPersonDTO.getIdNumber() == null ? newPersonDTO.getPassportNumber() : newPersonDTO.getIdNumber();
-        if (peopleRepo.existsByIdentificationDocumentNumber(newPersonDTOIdentificationNumber)) {
+        if (peopleRepo.existsByIdentificationDocumentNumber(newPersonDTO.getIdentificationDocumentDTO().getNumber())) {
             throw new PersonExistsException();
         }
 
-        Person person = PersonMapper.mapNewPersonDTOtoPerson(newPersonDTO);
+        Person person = NewPersonDTO.toEntity(newPersonDTO);
+        updatePersonDocumentTypeId(person);
+        updatePersonRoleId(person);
+
         return peopleRepo.save(person);
     }
 
+    private void updatePersonRoleId(Person person) {
+        List<Role> roles = person.getRoles();
 
-    public Person updatePerson(Integer id, UpdatePersonDTO updatePersonDTO) throws PersonNotFoundException, IdentificationDocumentNumberException {
-        Person person = peopleRepo.findById(id).orElseThrow(PersonNotFoundException::new);
-
-        if (identificationNumberMissing(updatePersonDTO.getIdNumber(), updatePersonDTO.getPassportNumber())) {
-            throw new IdentificationDocumentNumberException();
+        List<Role> updatedRoles = new ArrayList<>();
+        for (Role role : roles) {
+            if (role.getRolesId() == null) {
+                role = roleRepo.findByTypeIgnoreCase(role.getType()).orElseThrow(RuntimeException::new);
+            }
+            updatedRoles.add(role);
         }
 
-        Person updatedPerson = PersonMapper.mapUpdatePersonDTOToPerson(updatePersonDTO, person);
+        person.setRoles(updatedRoles);
+    }
+
+    private void updatePersonDocumentTypeId(Person person) {
+        DocumentType personDocumentType = person.getIdentificationDocument().getDocumentType();
+
+        Integer repoId = documentTypeRepository.
+                findByTypeIgnoreCase(personDocumentType.getType()).
+                orElseThrow().
+                getDocumentTypesId();
+
+        personDocumentType.setDocumentTypesId(repoId);
+    }
+
+
+    public Person updatePerson(Integer id, UpdatePersonDTO updatePersonDTO) throws PersonNotFoundException, PersonExistsException {
+        Person person = peopleRepo.findById(id).orElseThrow(PersonNotFoundException::new);
+
+        Person updatedPerson = UpdatePersonDTO.toUpdatedEntity(person, updatePersonDTO);
+        updatePersonDocumentTypeId(person);
+
+        // make sure id given doesn't actually exist yet :0
+        if (peopleRepo.existsByIdentificationDocumentNumber(person.getIdentificationDocument().getNumber())) {
+            throw new PersonExistsException();
+        }
+
         return peopleRepo.save(updatedPerson);
     }
 
@@ -65,16 +100,13 @@ public class PeopleService {
         }
 
         List<Role> roles = person.getRoles();
-        Role role = PersonMapper.mapRoleDTOToRole(roleDTO);
+        Role role = RoleDTO.toEntity(roleDTO);
+        role.setRolesId(roleRepo.findByTypeIgnoreCase(role.getType()).orElseThrow(RuntimeException::new).getRolesId());
+
         roles.add(role);
 
         person.setRoles(roles);
         return peopleRepo.save(person);
-    }
-
-
-    private boolean identificationNumberMissing(String idNumber, String passportNumber) {
-        return idNumber == null && passportNumber == null;
     }
 
 

@@ -3,7 +3,10 @@ package com.example.complexpeople.controller;
 import com.example.complexpeople.dto.NewPersonDTO;
 import com.example.complexpeople.dto.RoleDTO;
 import com.example.complexpeople.dto.UpdatePersonDTO;
-import com.example.complexpeople.exception.*;
+import com.example.complexpeople.exception.PersonExistsException;
+import com.example.complexpeople.exception.PersonNotFoundException;
+import com.example.complexpeople.exception.RoleAlreadyAssignedException;
+import com.example.complexpeople.exception.RoleNotAssignedException;
 import com.example.complexpeople.model.Person;
 import com.example.complexpeople.service.PeopleService;
 import jakarta.validation.Valid;
@@ -32,14 +35,14 @@ public class PeopleController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Person addPerson(@Valid @RequestBody NewPersonDTO newPersonDTO) throws IdentificationDocumentNumberException, PersonExistsException {
+    public Person addPerson(@Valid @RequestBody NewPersonDTO newPersonDTO) throws PersonExistsException {
         return peopleService.addPerson(newPersonDTO);
 
     }
 
 
     @PatchMapping("/{id}")
-    public Person updatePerson(@PathVariable Integer id, @RequestBody UpdatePersonDTO updatePersonDTO) throws PersonNotFoundException, IdentificationDocumentNumberException {
+    public Person updatePerson(@PathVariable Integer id, @RequestBody UpdatePersonDTO updatePersonDTO) throws PersonNotFoundException, PersonExistsException {
         return peopleService.updatePerson(id, updatePersonDTO);
     }
 
