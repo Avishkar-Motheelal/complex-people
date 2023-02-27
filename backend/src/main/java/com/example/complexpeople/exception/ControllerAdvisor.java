@@ -7,13 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.context.request.WebRequest;
 
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @ControllerAdvice
 public class ControllerAdvisor {
@@ -67,57 +64,58 @@ public class ControllerAdvisor {
 
     @ApiResponse(responseCode = "404")
     @ExceptionHandler(PersonNotFoundException.class)
-    public ResponseEntity<Object> handlePersonNotFoundException(PersonNotFoundException ex, WebRequest request) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("message", ex.getMessage());
+    public ResponseEntity<Object> handlePersonNotFoundException(PersonNotFoundException exception) {
+        String dateTime = OffsetDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+        ExceptionBody body = new ExceptionBody(dateTime, exception.getMessage());
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
 
 
     @ApiResponse(responseCode = "400")
     @ExceptionHandler(IdentificationDocumentNumberException.class)
-    public ResponseEntity<Object> handleIdOrPassportNotProvidedException(IdentificationDocumentNumberException ex, WebRequest request) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("message", ex.getMessage());
+    public ResponseEntity<Object> handleIdOrPassportNotProvidedException(IdentificationDocumentNumberException exception) {
+        String dateTime = OffsetDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+        ExceptionBody body = new ExceptionBody(dateTime, exception.getMessage());
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
     @ApiResponse(responseCode = "400")
     @ExceptionHandler(PersonExistsException.class)
-    public ResponseEntity<Object> handleIdentificationExists(PersonExistsException ex, WebRequest request) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("message", ex.getMessage());
+    public ResponseEntity<Object> handleIdentificationExists(PersonExistsException exception) {
+        String dateTime = OffsetDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+        ExceptionBody body = new ExceptionBody(dateTime, exception.getMessage());
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
     @ApiResponse(responseCode = "400")
     @ExceptionHandler(RoleAlreadyAssignedException.class)
-    public ResponseEntity<Object> handleRoleExistsException(RoleAlreadyAssignedException ex, WebRequest request) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("message", ex.getMessage());
+    public ResponseEntity<Object> handleRoleExistsException(RoleAlreadyAssignedException exception) {
+        String dateTime = OffsetDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+        ExceptionBody body = new ExceptionBody(dateTime, exception.getMessage());
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
     @ApiResponse(responseCode = "400")
     @ExceptionHandler(RoleNotAssignedException.class)
-    public ResponseEntity<Object> handleRoleNotAssigned(RoleNotAssignedException ex, WebRequest request) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("message", ex.getMessage());
+    public ResponseEntity<Object> handleRoleNotAssigned(RoleNotAssignedException exception) {
+        String dateTime = OffsetDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+        ExceptionBody body = new ExceptionBody(dateTime, exception.getMessage());
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
     @ApiResponse(responseCode = "400")
     @ExceptionHandler(ApartmentExistsException.class)
-    public ResponseEntity<Object> handleApartmentExists(ApartmentExistsException ex, WebRequest request) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("message", ex.getMessage());
+    public ResponseEntity<Object> handleApartmentExists(ApartmentExistsException exception) {
+        String dateTime = OffsetDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+        ExceptionBody body = new ExceptionBody(dateTime, exception.getMessage());
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
     @ApiResponse(responseCode = "404")
     @ExceptionHandler(ApartmentNotFoundException.class)
-    public ResponseEntity<Object> handleApartmentNotFound(ApartmentNotFoundException ex, WebRequest request) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("message", ex.getMessage());
+    public ResponseEntity<Object> handleApartmentNotFound(ApartmentNotFoundException exception) {
+        String dateTime = OffsetDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+        ExceptionBody body = new ExceptionBody(dateTime, exception.getMessage());
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
+
 }
