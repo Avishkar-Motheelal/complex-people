@@ -35,4 +35,8 @@ public class Person {
             joinColumns = @JoinColumn(name = "peopleId"),
             inverseJoinColumns = @JoinColumn(name = "rolesId"))
     private List<Role> roles = new ArrayList<>();
+
+    public Person(int personId) {
+        this.peopleId = personId;
+    }
 }

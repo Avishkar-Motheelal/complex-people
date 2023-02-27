@@ -25,6 +25,22 @@ public class ControllerAdvisor {
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
 
+    @ApiResponse(responseCode = "404")
+    @ExceptionHandler(ComplaintNotFoundException.class)
+    public ResponseEntity<ExceptionBody> handleComplaintNotFoundException(ComplaintNotFoundException exception) {
+        String dateTime = OffsetDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+        ExceptionBody body = new ExceptionBody(dateTime, exception.getMessage());
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    }
+
+    @ApiResponse(responseCode = "403")
+    @ExceptionHandler(ComplaintChangeException.class)
+    public ResponseEntity<ExceptionBody> handleComplaintChangeException(ComplaintChangeException exception) {
+        String dateTime = OffsetDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+        ExceptionBody body = new ExceptionBody(dateTime, exception.getMessage());
+        return new ResponseEntity<>(body, HttpStatus.FORBIDDEN);
+    }
+
 
     @ApiResponse(responseCode = "400")
     @ExceptionHandler(ValidationException.class)
@@ -59,8 +75,8 @@ public class ControllerAdvisor {
 
 
     @ApiResponse(responseCode = "400")
-    @ExceptionHandler(IdentificationDocumentNumberExceiption.class)
-    public ResponseEntity<Object> handleIdOrPassportNotProvidedException(IdentificationDocumentNumberExceiption ex, WebRequest request) {
+    @ExceptionHandler(IdentificationDocumentNumberException.class)
+    public ResponseEntity<Object> handleIdOrPassportNotProvidedException(IdentificationDocumentNumberException ex, WebRequest request) {
         Map<String, Object> body = new HashMap<>();
         body.put("message", ex.getMessage());
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
