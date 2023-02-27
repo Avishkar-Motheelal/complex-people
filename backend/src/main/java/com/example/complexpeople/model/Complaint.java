@@ -24,6 +24,23 @@ public class Complaint {
     @ManyToOne
     @JoinColumn(name = "statusId")
     private Status status;
-    private Integer complainant;
-    private Integer respondent;
+
+    @ManyToOne
+    @JoinColumn(name = "Complainant", referencedColumnName = "ApartmentsPeopleId")
+    private ApartmentsPeople complainant;
+
+    @OneToOne
+    @JoinColumn(name = "Respondent", referencedColumnName = "peopleId")
+    private People respondent;
+
+
+    public Complaint(int complaintType, String description, OffsetDateTime date, ApartmentsPeople complainant) {
+        this.complaintType = new ComplaintType();
+        this.complaintType.setComplaintTypesId(complaintType);
+
+        this.description = description;
+        this.date = date;
+        this.complainant = complainant;
+        this.status  = new Status(2);
+    }
 }

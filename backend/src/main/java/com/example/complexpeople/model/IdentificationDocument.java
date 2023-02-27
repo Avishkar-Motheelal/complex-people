@@ -16,6 +16,6 @@ public class IdentificationDocument {
     private Integer identificationDocumentsId;
     private String number;
     @ManyToOne
-    @Column(name = "DocumentTypesId")
+    @JoinColumn(name = "DocumentTypesId")
     private DocumentType documentType;
 }
