@@ -17,7 +17,11 @@ public class Apartment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer apartmentsId;
+
     private String unitNumber;
+    private Integer bedrooms;
+    private Integer bathrooms;
+    private Integer parkingSpaces;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "ApartmentsPeople",

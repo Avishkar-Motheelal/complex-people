@@ -15,11 +15,21 @@ import java.util.List;
 @Getter
 @Setter
 public class NewApartmentDTO {
-    private @NotNull String unitNumber;
+    @NotNull
+    private String unitNumber;
+    @NotNull
+    private Integer bedrooms;
+    @NotNull
+    private Integer bathrooms;
+    @NotNull
+    private Integer parkingSpaces;
 
     public static Apartment toEntity(NewApartmentDTO newApartmentDTO) {
         Apartment apartment = new Apartment();
         apartment.setUnitNumber(newApartmentDTO.getUnitNumber());
+        apartment.setBedrooms(newApartmentDTO.getBedrooms());
+        apartment.setBathrooms(newApartmentDTO.getBathrooms());
+        apartment.setParkingSpaces(newApartmentDTO.getParkingSpaces());
 
         List<Person> people = new ArrayList<>();
         apartment.setPeople(people);
