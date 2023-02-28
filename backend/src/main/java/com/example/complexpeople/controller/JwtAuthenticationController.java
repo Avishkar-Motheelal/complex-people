@@ -1,8 +1,11 @@
 package com.example.complexpeople.controller;
 
+import com.example.complexpeople.model.User;
+import com.example.complexpeople.security.SecurityUserDetails;
 import com.example.complexpeople.security.jwt.JwtRequest;
 import com.example.complexpeople.security.jwt.JwtResponse;
 import com.example.complexpeople.security.jwt.JwtTokenUtil;
+import com.example.complexpeople.service.UserService;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.HttpTransport;
@@ -11,6 +14,7 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.gson.GsonFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -33,6 +37,7 @@ public class JwtAuthenticationController {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenUtil jwtTokenUtil;
     private final UserDetailsService userDetailsService;
+    private final UserService userService;
     @Value("${app.googleClientId}")
     private String clientId;
 
@@ -65,7 +70,7 @@ public class JwtAuthenticationController {
 
 
     @PostMapping("/login/oauth2/code/google")
-    public void tokenThing(@RequestBody String token) throws GeneralSecurityException, IOException {
+    public ResponseEntity<?> googleAuth(@RequestBody String token) throws GeneralSecurityException, IOException {
 
         String idTokenString = token.replaceAll("\"", "");
         System.out.println("Token String: " + idTokenString);
@@ -80,24 +85,31 @@ public class JwtAuthenticationController {
             GoogleIdToken.Payload payload = idToken.getPayload();
 
             // Print user identifier
-            String userId = payload.getSubject();
-            System.out.println("User ID: " + userId);
+//            String userId = payload.getSubject();
+//            System.out.println("User ID: " + userId);
 
             // Get profile information from payload
             String email = payload.getEmail();
-            boolean emailVerified = payload.getEmailVerified();
-            String name = (String) payload.get("name");
-            String pictureUrl = (String) payload.get("picture");
-            String locale = (String) payload.get("locale");
-            String familyName = (String) payload.get("family_name");
-            String givenName = (String) payload.get("given_name");
-            System.out.println(payload.toPrettyString());
+            User user = userService.processExternalLogin(email);
+            UserDetails userDetails = new SecurityUserDetails(user);
+            final String jwtToken = jwtTokenUtil.generateToken(userDetails);
+            if (user.getPerson() == null) {
+                return new ResponseEntity<>(jwtToken, HttpStatus.CREATED);
+            }
+            return new ResponseEntity<>(jwtToken, HttpStatus.OK);
+//            boolean emailVerified = payload.getEmailVerified();
+//            String name = (String) payload.get("name");
+//            String pictureUrl = (String) payload.get("picture");
+//            String locale = (String) payload.get("locale");
+//            String familyName = (String) payload.get("family_name");
+//            String givenName = (String) payload.get("given_name");
+//            System.out.println(payload.toPrettyString());
             // Use or store profile information
             // ...
 
         } else {
             System.out.println("Invalid ID token.");
         }
-//        return "abc";
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }
