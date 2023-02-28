@@ -6,8 +6,9 @@ import com.example.complexpeople.exception.PersonExistsException;
 import com.example.complexpeople.model.Person;
 import com.example.complexpeople.model.Provider;
 import com.example.complexpeople.model.User;
-import com.example.complexpeople.repository.PeopleRepository;
 import com.example.complexpeople.repository.UserRepository;
+import com.example.complexpeople.security.SecurityUserDetails;
+import com.example.complexpeople.security.jwt.JwtResponse;
 import com.example.complexpeople.security.jwt.JwtTokenUtil;
 import com.example.complexpeople.service.PeopleService;
 import com.example.complexpeople.service.UserService;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -28,25 +29,33 @@ public class UserController {
     private final JwtTokenUtil jwtTokenUtil;
     private final UserService userService;
 
+//    @PostMapping //TODO change return
+//    public User register(@RequestBody @Valid NewUserDTO newUserDTO) throws PersonExistsException {
+//        NewPersonDTO newPersonDTO = newUserDTO.getPerson();
+//        User user = new User();
+//        Person person = peopleService.addPerson(newPersonDTO);
+//        user.setPassword(passwordEncoder.encode(newUserDTO.getPassword()));
+//        user.setEmail(newPersonDTO.getEmailAddress());
+//        user.setProvider(Provider.LOCAL);
+//        user.setProviderId(null);
+//        user.setPerson(person);
+//        user.setEnabled(true);
+//
+//        return userRepository.save(user);
+//    }
+
 
     @PostMapping
-    public User register(@RequestBody @Valid NewUserDTO newUserDTO) throws PersonExistsException {
-        NewPersonDTO newPersonDTO = newUserDTO.getPerson();
+    public ResponseEntity<?> register(@Valid NewUserDTO newUserDTO) {
         User user = new User();
-        Person person = peopleService.addPerson(newPersonDTO);
-        user.setPassword(passwordEncoder.encode(newUserDTO.getPassword()));
-        user.setEmail(newPersonDTO.getEmailAddress());
-        user.setProvider(Provider.LOCAL);
-        user.setProviderId(null);
-        user.setPerson(person);
-        user.setEnabled(true);
+        user.setEmail(newUserDTO.getEmail());
 
-        return userRepository.save(user);
+        return new ResponseEntity<>(new JwtResponse(user.getEmail(), jwtTokenUtil.generateToken(new SecurityUserDetails(user))), HttpStatus.CREATED);
     }
 
 
     @PostMapping("/person")
-    public ResponseEntity<?> addPersonToUser(@Valid NewPersonDTO newPersonDTO, @RequestHeader String token) throws PersonExistsException {
+    public ResponseEntity<?> addPersonToUser(@Valid NewPersonDTO newPersonDTO, @RequestHeader("Authorization") String token) throws PersonExistsException {
         String email = jwtTokenUtil.getUsernameFromToken(token);
         User user = userService.getUserFromEmail(email);
         if (user.getPerson() != null) {
@@ -54,6 +63,7 @@ public class UserController {
         }
         Person person = peopleService.addPerson(newPersonDTO);
         user.setPerson(person);
+        userRepository.save(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 }

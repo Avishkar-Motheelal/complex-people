@@ -47,12 +47,12 @@ public class JwtAuthenticationController {
         throws Exception {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-        final UserDetails userDetails = userDetailsService
+        UserDetails userDetails = userDetailsService
             .loadUserByUsername(authenticationRequest.getUsername());
 
-        final String token = jwtTokenUtil.generateToken(userDetails);
+        String token = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new JwtResponse(token));
+        return ResponseEntity.ok(new JwtResponse(userDetails.getUsername(), token));
     }
 
 
@@ -83,30 +83,14 @@ public class JwtAuthenticationController {
         GoogleIdToken idToken = verifier.verify(idTokenString);
         if (idToken != null) {
             GoogleIdToken.Payload payload = idToken.getPayload();
-
-            // Print user identifier
-//            String userId = payload.getSubject();
-//            System.out.println("User ID: " + userId);
-
-            // Get profile information from payload
             String email = payload.getEmail();
             User user = userService.processExternalLogin(email);
             UserDetails userDetails = new SecurityUserDetails(user);
-            final String jwtToken = jwtTokenUtil.generateToken(userDetails);
+            String jwtToken = jwtTokenUtil.generateToken(userDetails);
             if (user.getPerson() == null) {
-                return new ResponseEntity<>(jwtToken, HttpStatus.CREATED);
+                return new ResponseEntity<>(new JwtResponse(userDetails.getUsername(), jwtToken), HttpStatus.CREATED);
             }
-            return new ResponseEntity<>(jwtToken, HttpStatus.OK);
-//            boolean emailVerified = payload.getEmailVerified();
-//            String name = (String) payload.get("name");
-//            String pictureUrl = (String) payload.get("picture");
-//            String locale = (String) payload.get("locale");
-//            String familyName = (String) payload.get("family_name");
-//            String givenName = (String) payload.get("given_name");
-//            System.out.println(payload.toPrettyString());
-            // Use or store profile information
-            // ...
-
+            return new ResponseEntity<>(new JwtResponse(userDetails.getUsername(), jwtToken), HttpStatus.OK);
         } else {
             System.out.println("Invalid ID token.");
         }

@@ -1,5 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {LoginComponent} from "./login/login.component";
+import {RegisterComponent} from "./login/register.component";
+import {AccountDetailsComponent} from "./account-details/account-details.component";
 import {MaintenanceComponent} from "./components/maintenance/maintenance.component";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {ApartmentsComponent} from "./components/apartments/apartments.component";
@@ -16,9 +19,16 @@ const routes: Routes = [
   { path: 'residents/:id', component: ResidentDetailsComponent},
   { path: 'apartments/:id', component: ApartmentDetailsComponent},
 ];
+const routes: Routes = [
+  {path: "", redirectTo: "/login", pathMatch: "full"},
+  {path: "login", component: LoginComponent},
+  {path: "register", component: RegisterComponent},
+  {path: "account/details", component: AccountDetailsComponent},
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
