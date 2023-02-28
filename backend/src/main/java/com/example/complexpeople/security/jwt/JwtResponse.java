@@ -12,5 +12,6 @@ public class JwtResponse implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -8091872930283046844L;
+    private final String email;
     private final String jwttoken;
 }

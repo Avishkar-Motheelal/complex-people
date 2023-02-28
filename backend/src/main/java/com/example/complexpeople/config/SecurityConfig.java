@@ -66,7 +66,7 @@ public class SecurityConfig {
                 "/docs/**",
                 "/swagger",
                 "/docs",
-                "/user/**",
+                "/users/**",
 //                "/**",
                 "/login/oauth2/code/google").permitAll()
 //            .requestMatchers("/**").hasRole("STAFF")
