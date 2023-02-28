@@ -2,7 +2,7 @@ package com.example.complexpeople.controller;
 
 import com.example.complexpeople.dto.NewPersonDTO;
 import com.example.complexpeople.dto.NewUserDTO;
-import com.example.complexpeople.exception.IdentificationDocumentNumberExceiption;
+import com.example.complexpeople.exception.IdentificationDocumentNumberException;
 import com.example.complexpeople.exception.PersonExistsException;
 import com.example.complexpeople.mappers.PersonMapper;
 import com.example.complexpeople.model.Person;
@@ -28,11 +28,11 @@ public class UserController {
 
 
     @PostMapping
-    public User register(@RequestBody @Valid NewUserDTO newUserDTO) throws IdentificationDocumentNumberExceiption, PersonExistsException {
+    public User register(@RequestBody @Valid NewUserDTO newUserDTO) throws IdentificationDocumentNumberException, PersonExistsException {
         NewPersonDTO newPersonDTO = newUserDTO.getPerson();
         User user = new User();
         if (newPersonDTO.getIdNumber() == null && newPersonDTO.getPassportNumber() == null) {
-            throw new IdentificationDocumentNumberExceiption();
+            throw new IdentificationDocumentNumberException();
         }
 
         String newPersonDTOIdentificationNumber = newPersonDTO.getIdNumber() == null ? newPersonDTO.getPassportNumber() : newPersonDTO.getIdNumber();
