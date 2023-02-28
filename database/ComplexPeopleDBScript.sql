@@ -62,6 +62,9 @@ CREATE TABLE [RolesPeople] (
 CREATE TABLE [Apartments] (
   [ApartmentsId] INT IDENTITY(1,1) NOT NULL,
   [UnitNumber] VARCHAR(35) NOT NULL,
+  [Bedrooms] SMALLINT NOT NULL,
+  [Bathrooms] SMALLINT NOT NULL,
+  [ParkingSpaces] INT NOT NULL,
   PRIMARY KEY ([ApartmentsId])
 );
 
