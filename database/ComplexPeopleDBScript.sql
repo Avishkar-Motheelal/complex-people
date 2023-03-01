@@ -131,8 +131,6 @@ CREATE TABLE [Users] (
   [Password] NVARCHAR(MAX) NOT NULL,
   [Enabled] BIT NOT NULL,
   [PeopleId] INT NOT NULL,
-  [Provider] NVARCHAR(50),
-  [ProviderId] INT,
   PRIMARY KEY ([UserId]),
   FOREIGN KEY ([PeopleId]) REFERENCES People([PeopleId])
 );
