@@ -11,6 +11,8 @@ import {ResidentsComponent} from './components/residents/residents.component';
 import {ApartmentDetailsComponent} from './components/apartment-details/apartment-details.component';
 import {ResidentDetailsComponent} from './components/resident-details/resident-details.component';
 import {FormsModule} from "@angular/forms";
+import { VisitorsComponent } from './components/visitors/visitors.component';
+import { VisitorsDetailsComponent } from './components/visitors-details/visitors-details.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
@@ -34,6 +36,8 @@ import { LogoutComponent } from './components/logout/logout.component';
     ResidentsComponent,
     ApartmentDetailsComponent,
     ResidentDetailsComponent,
+    VisitorsComponent,
+    VisitorsDetailsComponent,
     AppComponent,
     LoginComponent,
     AlertComponent,
