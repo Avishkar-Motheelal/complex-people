@@ -1,27 +1,26 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { MaintenanceComponent } from './components/maintenance/maintenance.component';
-import {HttpClientModule} from "@angular/common/http";
-import { TenantRequestsComponent } from './components/tenant-requests/tenant-requests.component';
-import { NavigationWebComponent } from './components/navigation-web/navigation-web.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {MaintenanceComponent} from './components/maintenance/maintenance.component';
+import {TenantRequestsComponent} from './components/tenant-requests/tenant-requests.component';
+import {NavigationWebComponent} from './components/navigation-web/navigation-web.component';
 
-import { ApartmentsComponent } from './components/apartments/apartments.component';
-import { ResidentsComponent } from './components/residents/residents.component';
-import { ApartmentDetailsComponent } from './components/apartment-details/apartment-details.component';
-import { ResidentDetailsComponent } from './components/resident-details/resident-details.component';
+import {ApartmentsComponent} from './components/apartments/apartments.component';
+import {ResidentsComponent} from './components/residents/residents.component';
+import {ApartmentDetailsComponent} from './components/apartment-details/apartment-details.component';
+import {ResidentDetailsComponent} from './components/resident-details/resident-details.component';
 import {FormsModule} from "@angular/forms";
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from "@angular/forms";
 import {AlertComponent} from './alert/alert.component';
 import {RegisterComponent} from './login/register.component';
-import { AccountDetailsComponent } from './account-details/account-details.component';
+import {AccountDetailsComponent} from './account-details/account-details.component';
+import {ErrorInterceptor, JwtInterceptor} from "./_helpers";
+import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +38,8 @@ import { AccountDetailsComponent } from './account-details/account-details.compo
     LoginComponent,
     AlertComponent,
     RegisterComponent,
-    AccountDetailsComponent
+    AccountDetailsComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +52,10 @@ import { AccountDetailsComponent } from './account-details/account-details.compo
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    // {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}, //TODO enable after debugging
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

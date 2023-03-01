@@ -73,7 +73,6 @@ public class JwtAuthenticationController {
     public ResponseEntity<?> googleAuth(@RequestBody String token) throws GeneralSecurityException, IOException {
 
         String idTokenString = token.replaceAll("\"", "");
-        System.out.println("Token String: " + idTokenString);
         HttpTransport transport = new NetHttpTransport();
         JsonFactory jsonFactory = new GsonFactory();
         GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)

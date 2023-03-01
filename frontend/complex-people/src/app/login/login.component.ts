@@ -2,12 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {CredentialResponse, PromptMomentNotification} from "google-one-tap";
 import {environment} from "../../environments/environment";
 import {ActivatedRoute, Router} from "@angular/router";
-// import {AuthService} from "../auth.service";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AccountService, AlertService} from "../_services";
-import {User} from "../_models";
+import {User} from "../models/user";
 import {first} from "rxjs/operators";
 import {HttpResponse} from "@angular/common/http";
+import {AccountService} from "../services/account.service";
+import {AlertService} from "../services/alert.service";
 
 
 @Component({
@@ -95,8 +95,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: () => {
-          // get return url from query parameters or default to home page
-          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
           this.router.navigateByUrl(returnUrl);
         },
         error: error => {

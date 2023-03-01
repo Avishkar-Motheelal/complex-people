@@ -30,11 +30,12 @@ public class Person {
     @JoinColumn(name = "contactDetailsId")
     private ContactDetail contactDetail;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "RolesPeople",
-            joinColumns = @JoinColumn(name = "peopleId"),
-            inverseJoinColumns = @JoinColumn(name = "rolesId"))
+        joinColumns = @JoinColumn(name = "peopleId"),
+        inverseJoinColumns = @JoinColumn(name = "rolesId"))
     private List<Role> roles = new ArrayList<>();
+
 
     public Person(int personId) {
         this.peopleId = personId;

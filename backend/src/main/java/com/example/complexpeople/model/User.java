@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Getter
@@ -29,6 +30,11 @@ public class User {
 
     @Transient
     public List<Role> getRoles() {
+        if (person == null) {
+            Role role = new Role();
+            role.setType("VISITOR");
+            return Collections.singletonList(role);
+        }
         return person.getRoles();
     }
 }

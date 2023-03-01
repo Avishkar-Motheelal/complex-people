@@ -5,7 +5,8 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
 import {environment} from '../../environments/environment';
-import {User} from '../_models';
+import {User} from '../models/user';
+import {AddPerson} from "../models/addPerson";
 
 @Injectable({providedIn: 'root'})
 export class AccountService {
@@ -93,4 +94,7 @@ export class AccountService {
   //             return x;
   //         }));
   // }
+  addPerson(person: AddPerson) {
+    return this.http.post(`${environment.apiUrl}/users/person`, person, {observe: 'response'});
+  }
 }

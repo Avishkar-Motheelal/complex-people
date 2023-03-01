@@ -28,17 +28,17 @@ public class UserService {
 
     private User createUser(String email) {
         String password = "hyuiahrulghagh89347y982ig"; //TODO generate random password
-        return createUser(email, password);
+        return createUser(email, password, Provider.GOOGLE);
     }
 
 
-    public User createUser(String email, String password) {
+    public User createUser(String email, String password, Provider provider) {
         if (userRepository.existsByEmail(email)) {
             throw new UserExistsException("User already exists with that email");
         }
         User user = new User();
         user.setEnabled(true);
-        user.setProvider(Provider.GOOGLE);
+        user.setProvider(provider);
         user.setEmail(email);
         user.setPassword(passwordEncoder.encode(password));
 
