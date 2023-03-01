@@ -13,6 +13,10 @@ import {ResidentDetailsComponent} from './components/resident-details/resident-d
 import {FormsModule} from "@angular/forms";
 import { VisitorsComponent } from './components/visitors/visitors.component';
 import { VisitorsDetailsComponent } from './components/visitors-details/visitors-details.component';
+import { AddApartmentComponent } from './components/add-apartment/add-apartment.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddResidentComponent } from './components/add-resident/add-resident.component';
+
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
@@ -38,6 +42,8 @@ import { LogoutComponent } from './components/logout/logout.component';
     ResidentDetailsComponent,
     VisitorsComponent,
     VisitorsDetailsComponent,
+    AddApartmentComponent,
+    AddResidentComponent,
     AppComponent,
     LoginComponent,
     AlertComponent,
@@ -54,7 +60,8 @@ import { LogoutComponent } from './components/logout/logout.component';
     HttpClientModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

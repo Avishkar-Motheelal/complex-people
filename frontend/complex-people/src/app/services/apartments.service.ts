@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Apartment } from "../models/apartment.model";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Apartment} from "../models/apartment.model";
 import {map, Observable} from "rxjs";
 import {environment} from "../../environments/environment";
+import {ApartmentHelper} from "../helper/apartment-helper";
+import {NewApartmentDto} from "../models/new-apartment-dto.model";
 
 
 @Injectable({
@@ -15,12 +17,24 @@ export class ApartmentsService {
   constructor(private http: HttpClient) {}
 
   getApartments(): Observable<Apartment[]> {
-    return this.http.get<Apartment[]>(this.apartmentUrl);
+    return this.http.get<any[]>(this.apartmentUrl).pipe(
+      map(apartments => apartments.map(apartment => {
+        return ApartmentHelper.createApartment(apartment);
+      }))
+    );
   }
+
 
   getApartment(id: number) {
     const apartmentUrl = `${this.apartmentUrl}/${id}`;
-    return this.http.get<Apartment>(apartmentUrl);
+    return this.http.get<Apartment>(apartmentUrl).pipe(
+      map(apartment => {
+        return ApartmentHelper.createApartment(apartment);
+      })
+    );
   }
 
+  addNewApartment(newApartmentDto: NewApartmentDto) {
+    return this.http.post(this.apartmentUrl, newApartmentDto);
+  }
 }
