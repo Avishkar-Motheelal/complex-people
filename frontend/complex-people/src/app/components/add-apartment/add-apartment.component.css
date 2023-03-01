@@ -1,0 +1,15 @@
+form {
+
+}
+
+input {
+  display: flex;
+}
+
+button {
+  margin-top: 15px;
+}
+
+p {
+  color: red;
+}

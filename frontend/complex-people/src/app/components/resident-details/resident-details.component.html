@@ -1,41 +1,46 @@
 
-<h2>Resident Details</h2>
-<form action="" *ngIf="person">
-  <fieldset>
-    <legend>General Information</legend>
-    <label for="resident-first-name">First Name: </label>
-    <input id="resident-first-name" name="firstName" [(ngModel)]="person.firstName" type="text">
+<article *ngIf="person">
+  <section>
+    <h2>Resident Details</h2>
+    <form action="">
+      <fieldset>
+        <legend>General Information</legend>
+        <label for="resident-first-name">First Name: </label>
+        <input id="resident-first-name" name="firstName" [(ngModel)]="person.firstName" type="text">
 
-    <label for="resident-last-name">Last name: </label>
-    <input id="resident-last-name" name="lastName" [(ngModel)]="person.lastName" type="text">
-  </fieldset>
+        <label for="resident-last-name">Last name: </label>
+        <input id="resident-last-name" name="lastName" [(ngModel)]="person.lastName" type="text">
+      </fieldset>
 
-  <fieldset>
-    <legend>Identification Details</legend>
-    <label for="id-type">Type: </label>
-    <input id="id-type" name="identificationDocumentType" [(ngModel)]="person.identificationDocumentType" type="text">
+      <fieldset>
+        <legend>Identification Details</legend>
+        <label for="id-type">Type: </label>
+        <input id="id-type" name="identificationDocumentType" [(ngModel)]="person.identificationDocumentType" type="text">
 
-    <label for="id-number">Number: </label>
-    <input id="id-number" name="identificationDocumentNumber" [(ngModel)]="person.identificationDocumentNumber" type="text">
-  </fieldset>
+        <label for="id-number">Number: </label>
+        <input id="id-number" name="identificationDocumentNumber" [(ngModel)]="person.identificationDocumentNumber" type="text">
+      </fieldset>
 
-  <fieldset>
-    <legend>Contact Details</legend>
-    <label for="email">Email Address: </label>
-    <input id="email" name="emailAddress" [(ngModel)]="person.emailAddress" type="email">
+      <fieldset>
+        <legend>Contact Details</legend>
+        <label for="email">Email Address: </label>
+        <input id="email" name="emailAddress" [(ngModel)]="person.emailAddress" type="email">
 
-    <label for="phone">Phone Number: </label>
-    <input id="phone" name="phone" [(ngModel)]="person.phoneNumber" type="tel">
-  </fieldset>
+        <label for="phone">Phone Number: </label>
+        <input id="phone" name="phone" [(ngModel)]="person.phoneNumber" type="tel">
+      </fieldset>
+    </form>
 
-  <fieldset>
-    <legend>Apartment Details</legend>
-<!--    TODO: get in what apartment a person lives. Use get /apartments and filter :'(-->
-  </fieldset>
+    <button>Save Changes</button>
+  </section>
 
-  <!--    <label for="">: </label>-->
-  <!--    <input id="" [(ngModel)]="person." type="text">-->
-
-</form>
-
-<button>Save Changes</button>
+  <section>
+    <h2>Access Cards Registered for {{person.firstName}}</h2>
+    <section class="card" *ngFor="let card of cards">
+      <p><em>UUID:</em> {{card.accessCardId}}</p>
+      <p><em>Status:</em> {{card.activated === true ? "Activated" : "Disabled"}}</p>
+      <button>Deactivate Card</button>
+    </section>
+    <button>Add new Card</button>
+  </section>
+</article>

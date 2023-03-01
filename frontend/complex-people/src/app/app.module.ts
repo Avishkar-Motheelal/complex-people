@@ -16,6 +16,10 @@ import { ResidentDetailsComponent } from './components/resident-details/resident
 import {FormsModule} from "@angular/forms";
 import { VisitorsComponent } from './components/visitors/visitors.component';
 import { VisitorsDetailsComponent } from './components/visitors-details/visitors-details.component';
+import { AddApartmentComponent } from './components/add-apartment/add-apartment.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddResidentComponent } from './components/add-resident/add-resident.component';
+
 
 @NgModule({
   declarations: [
@@ -31,6 +35,8 @@ import { VisitorsDetailsComponent } from './components/visitors-details/visitors
     ResidentDetailsComponent,
     VisitorsComponent,
     VisitorsDetailsComponent,
+    AddApartmentComponent,
+    AddResidentComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +44,8 @@ import { VisitorsDetailsComponent } from './components/visitors-details/visitors
     HttpClientModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
