@@ -23,5 +23,8 @@
     <section *ngFor="let resident of residents">
       <button [routerLink]="'/residents/' + resident.peopleId">{{resident.firstName}} {{resident.lastName}}</button>
     </section>
+    <section *ngIf="residents">
+      <p>There are no residents in this apartment.</p>
+    </section>
   </section>
 </article>
