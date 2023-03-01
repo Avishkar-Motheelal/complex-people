@@ -46,12 +46,12 @@ public class ComplaintService {
             complaint.setStatus(new Status(status));
         }
 
-        if (staffId != 0 && checkStatus(complaint.getStatus().getStatusId())) {
+        else if (staffId != 0 && checkStatus(complaint.getStatus().getStatusId())) {
             Person people = peopleRepository.findById(staffId).orElseThrow(PersonNotFoundException::new);
             complaint.setRespondent(people);
         }
 
-        if (desc != null && checkStatus(complaint.getStatus().getStatusId())) {
+        else if ((desc != null) && checkStatus(complaint.getStatus().getStatusId())) {
             complaint.setDescription(desc);
         } else {
             throw new ComplaintChangeException();

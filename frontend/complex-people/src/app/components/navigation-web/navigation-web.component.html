@@ -20,7 +20,7 @@
     <image xlink:href="assets/bento.svg" height="25" width="25"/>
   </svg>
 
-  <a class="active" href="#dashboard">
+  <a class="active" href="dashboard">
     <svg height="25" width="25">
       <image xlink:href="assets/dashboard.svg" height="25" width="25" class="active"/>
     </svg> <span class="link_text">Dashboard</span> </a>
@@ -34,7 +34,7 @@
       <image xlink:href="assets/residents.svg" height="25" width="25"/>
     </svg> <span class="link_text">Residents</span> </a>
 
-  <a href="#maint"> <svg height="25" width="25">
+  <a href="maintenance"> <svg height="25" width="25">
     <image xlink:href="assets/maintenance.svg" height="25" width="25"/>
   </svg> <span class="link_text">Maintenance</span> </a>
 
@@ -50,3 +50,7 @@
     <image xlink:href="assets/logout.svg" height="25" width="25"/>
   </svg><span class="link_text">Logout</span></a>
 </nav>
+
+<main  id="main_content">
+  <router-outlet></router-outlet>
+</main>

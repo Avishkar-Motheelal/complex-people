@@ -1,0 +1,18 @@
+<h2>Maintenance Requests</h2>
+
+<section class="card_content">
+
+  <section class="issue_card" [hidden]="issues.length == 0" *ngFor="let issue of issues">
+    <p id="unit_name">{{issue.date | date:'fullDate'}}</p>
+
+    <h2 id="issue_desc">Unit {{issue.complainant.apartmentsId.unitNumber}}</h2>
+    <p id="issues_desc_p">{{issue.description}}</p>
+    <p id="issues_state" class="issue_status_{{issue.status.statusId}}">{{issue.status.status}}</p>
+    <p id="account">
+      <svg height="12" width="12">
+        <image xlink:href="assets/account.svg" height="12" width="12" class="active"/>
+      </svg>{{issue.complainant.peopleId.firstName}} {{issue.complainant.peopleId.lastName}}</p>
+  </section>
+</section>
+
+

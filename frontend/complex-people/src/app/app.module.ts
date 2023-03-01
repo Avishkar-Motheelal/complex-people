@@ -3,6 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavigationWebComponent } from './navigation-web/navigation-web.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { MaintenanceComponent } from './maintenance/maintenance.component';
+import {HttpClientModule} from "@angular/common/http";
+import { TenantRequestsComponent } from './tenant-requests/tenant-requests.component';
 import { NavigationWebComponent } from './components/navigation-web/navigation-web.component';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -16,6 +21,10 @@ import {FormsModule} from "@angular/forms";
   declarations: [
     AppComponent,
     NavigationWebComponent,
+    DashboardComponent,
+    MaintenanceComponent,
+    TenantRequestsComponent
+    NavigationWebComponent,
     ApartmentsComponent,
     ResidentsComponent,
     ApartmentDetailsComponent,
@@ -23,6 +32,8 @@ import {FormsModule} from "@angular/forms";
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
+    HttpClientModule
     AppRoutingModule,
     HttpClientModule,
     FormsModule
