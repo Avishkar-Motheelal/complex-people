@@ -20,7 +20,6 @@ const routes: Routes = [
   {path: 'residents', component: ResidentsComponent, canActivate: [AuthGuard]},
   {path: 'residents/:id', component: ResidentDetailsComponent, canActivate: [AuthGuard]},
   {path: 'apartments/:id', component: ApartmentDetailsComponent, canActivate: [AuthGuard]},
-  {path: "", redirectTo: "/login", pathMatch: "full", canActivate: [AuthGuard]},
   {path: "register", component: RegisterComponent, canActivate: [AuthGuard]},
   {path: "account/details", component: AccountDetailsComponent, canActivate: [AuthGuard]},
   {path: "login", component: LoginComponent},
