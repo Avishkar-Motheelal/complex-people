@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Person} from "../../models/person.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PeopleService} from "../../services/people.service";
@@ -19,7 +19,6 @@ import {HttpResponse} from "@angular/common/http";
 })
 export class ResidentDetailsComponent {
   // @Input() person?: Person;
-  @Input() person?: Person;
   @Input() cards?: AccessCard[];
 
   constructor(
@@ -28,17 +27,19 @@ export class ResidentDetailsComponent {
     private formBuilder: FormBuilder,
     private router: Router,
     private accountService: AccountService,
-    private alertService: AlertService
+    private alertService: AlertService,
     private cardsService: CardsService,
-  ) {}
+  ) {
+  }
 
+  person?: Person;
   form!: FormGroup;
   loading = false;
   submitted = false;
   id = Number(this.route.snapshot.paramMap.get('id'));
 
   ngOnInit(): void {
-    this.getPerson();
+    this.loadPerson();
     this.getCards();
     this.getPerson().pipe(first()).subscribe({
       next: (person: Person) => {
@@ -67,6 +68,10 @@ export class ResidentDetailsComponent {
 
     return this.peopleService.getPerson(this.id)
     // .subscribe(person => this.person = person);
+  }
+
+  loadPerson() {
+    return this.peopleService.getPerson(this.id).subscribe(person => this.person = person);
   }
 
   onSubmit() {

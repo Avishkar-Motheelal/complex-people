@@ -49,8 +49,9 @@ export class PeopleService {
       phoneNumber: string = person.contactDetail.phoneNumber;
       roles: string[] = person.roles.map((role: { type: any; }) => role.type);
     }
+  }
+
   addNewPerson(newResidentDto: NewResidentDto) {
     return this.http.post(this.peopleUrl, newResidentDto);
   }
 }
-
