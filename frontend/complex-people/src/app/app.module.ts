@@ -14,6 +14,8 @@ import { ResidentsComponent } from './components/residents/residents.component';
 import { ApartmentDetailsComponent } from './components/apartment-details/apartment-details.component';
 import { ResidentDetailsComponent } from './components/resident-details/resident-details.component';
 import {FormsModule} from "@angular/forms";
+import { VisitorsComponent } from './components/visitors/visitors.component';
+import { VisitorsDetailsComponent } from './components/visitors-details/visitors-details.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import {FormsModule} from "@angular/forms";
     ResidentsComponent,
     ApartmentDetailsComponent,
     ResidentDetailsComponent,
+    VisitorsComponent,
+    VisitorsDetailsComponent,
   ],
   imports: [
     BrowserModule,

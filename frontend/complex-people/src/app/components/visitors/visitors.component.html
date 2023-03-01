@@ -1,0 +1,24 @@
+<table>
+  <caption>Visitors</caption>
+  <thead>
+  <tr>
+    <th scope="col">Visitor First Name</th>
+    <th scope="col">Visitor Last Name</th>
+    <th scope="col">Apartment Number</th>
+    <th scope="col">DateIn</th>
+    <th scope="col">DateOut</th>
+    <th scope="col">View Visitor</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let visit of visitors">
+    <td hidden>{{visit.visitorId}}</td>
+    <td>{{visit.visitor.firstName}}</td>
+    <td>{{visit.visitor.lastName}}</td>
+    <td>{{visit.apartment.unitNumber}}</td>
+    <td>{{visit.dateIn}}</td>
+    <td>{{visit.dateOut}}</td>
+    <td> <button [routerLink]="'/visitors/' + visit.visitor.peopleId">View</button></td>
+  </tr>
+  </tbody>
+</table>
