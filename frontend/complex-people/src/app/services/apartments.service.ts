@@ -4,6 +4,7 @@ import {Apartment} from "../models/apartment.model";
 import {map, Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {ApartmentHelper} from "../helper/apartment-helper";
+import {NewApartmentDto} from "../models/new-apartment-dto.model";
 
 
 @Injectable({
@@ -21,7 +22,6 @@ export class ApartmentsService {
         return ApartmentHelper.createApartment(apartment);
       }))
     );
-    // return this.http.get<any[]>(this.apartmentUrl);
   }
 
 
@@ -32,7 +32,9 @@ export class ApartmentsService {
         return ApartmentHelper.createApartment(apartment);
       })
     );
-    // return this.http.get<Apartment>(apartmentUrl);
   }
 
+  addNewApartment(newApartmentDto: NewApartmentDto) {
+    return this.http.post(this.apartmentUrl, newApartmentDto);
+  }
 }

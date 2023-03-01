@@ -8,6 +8,7 @@ import {ResidentDetailsComponent} from "./components/resident-details/resident-d
 import {ApartmentDetailsComponent} from "./components/apartment-details/apartment-details.component";
 import {VisitorsComponent} from "./components/visitors/visitors.component";
 import {VisitorsDetailsComponent} from "./components/visitors-details/visitors-details.component";
+import {AddApartmentComponent} from "./components/add-apartment/add-apartment.component";
 
 const routes: Routes = [
   {path: "", redirectTo: "dashboard", pathMatch: 'full'},
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'apartments/:id', component: ApartmentDetailsComponent},
   {path: 'visitors', component: VisitorsComponent},
   {path: 'visitors/:id', component: VisitorsDetailsComponent},
+  {path: 'new-apartment', component: AddApartmentComponent},
 ];
 
 @NgModule({
