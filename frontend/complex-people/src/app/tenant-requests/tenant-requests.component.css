@@ -1,0 +1,117 @@
+aside {
+  /*float: right;*/
+  /*display: inline-block;*/
+  height: 70%;
+}
+
+.tenant_request_section {
+  background-color: white;
+  position: relative;
+  padding: 10px;
+  min-width: 30%;
+  max-width: 100%;
+  height: 100% ;
+  /*margin: 15px;*/
+  margin-right: 15px;
+  border-radius: 15px;
+  z-index: 1;
+}
+
+.issue_card_small {
+  padding-left: 10px;
+}
+
+#date_req {
+  font-size: 11pt;
+  font-weight: bold;
+  color: #a1a1a1;
+  line-height: 1px;
+}
+
+.issue_card_small img {
+  display: inline-block;
+  position: relative;
+  background-color: rgba(217, 217, 217, 0.68);
+  border-radius: 10px;
+  bottom: 5px;
+}
+
+#issue_title {
+  overflow: clip; /* Hides overflowing text */
+  white-space: nowrap; /* Prevents text from wrapping */
+  text-overflow: ellipsis; /* Displays an ellipsis (...) to indicate truncated text */
+  max-width: 250px; /* Sets the maximum width for the text container */
+}
+
+#unit_name_id {
+  overflow: clip; /* Hides overflowing text */
+  white-space: nowrap; /* Prevents text from wrapping */
+  text-overflow: ellipsis; /* Displays an ellipsis (...) to indicate truncated text */
+  max-width: 120px; /* Sets the maximum width for the text container */
+}
+
+.issue_card_small div {
+  display: inline-block;
+  margin-left: 20px;
+  top: 10px;
+  text-align: start;
+  position: relative;
+}
+
+#unit_name_id {
+  font-weight: bold;
+  font-size: 14pt;
+}
+
+#issue_title {
+  top: -15px;
+  position: relative;
+}
+
+#issue_status{
+  display: inline-block;
+  float: right;
+  text-transform: uppercase;
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+  top: 25px;
+  text-align: center;
+  position: relative;
+}
+
+
+/*Quick Actions Styling*/
+.dash_card {
+  background-color: white;
+  padding: 15px;
+  position: -ms-device-fixed;
+  /*width: 15%;*/
+  border-radius: 10px;
+  /*display: inline-block;*/
+  min-width: 30%;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
+
+.card_title_quick {
+  color: black;
+  font-weight: bold;
+  font-size: 13pt;
+}
+
+.quick_act_btn {
+  width: 150px;
+  height: 40px;
+  margin-right: 10px;
+  background-color: transparent;
+  border-color: #00ab6c;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 12pt;
+  /*color: #00ab6c;*/
+
+}

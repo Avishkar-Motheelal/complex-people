@@ -1,0 +1,90 @@
+.top_bar_cards {
+  margin-top: 20px;
+  width: 70%;
+  float: left;
+  display: inline-grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+#tenant_requests_comp {
+  float: left;
+  width: 30%;
+  height: 100%;
+  margin-top: 20px;
+}
+
+.dash_card {
+  background-color: white;
+  padding: 15px;
+  position: -ms-device-fixed;
+  /*width: 15%;*/
+  float: right;
+  border-radius: 15px;
+  /*display: inline-block;*/
+  margin-right: 15px;
+  margin-bottom: 10px;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+}
+
+.quick_action_card {
+  background-color: white;
+  padding: 15px;
+  position: fixed;
+  border-radius: 15px;
+  display: inline-block;
+  margin-right: 20px;
+  float: right;
+
+}
+
+.card_title{
+  font-size: 13pt;
+  line-height: 0;
+  color: gray;
+  font-weight: lighter;
+}
+
+.card_content {
+  font-size: 45pt;
+  line-height: 1px;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 1000px) {
+  .top_bar_cards {
+    margin-top: 20px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+  }
+
+  #tenant_requests_comp {
+    width: 100%;
+  }
+
+
+}
+
+@media screen and (max-width: 800px) {
+  .top_bar_cards {
+    margin-top: 20px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+  #tenant_requests_comp {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .top_bar_cards {
+    margin-top: 20px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto;
+  }
+}
