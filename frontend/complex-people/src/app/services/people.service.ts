@@ -4,6 +4,7 @@ import {map, Observable} from "rxjs";
 import {Person} from "../models/person.model";
 import {environment} from "../../environments/environment";
 import {PersonHelper} from "../helper/person-helper";
+import {NewResidentDto} from "../models/new-resident-dto.model";
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,9 @@ export class PeopleService {
       })
     )
   };
+
+  addNewPerson(newResidentDto: NewResidentDto) {
+    return this.http.post(this.peopleUrl, newResidentDto);
+  }
 }
 

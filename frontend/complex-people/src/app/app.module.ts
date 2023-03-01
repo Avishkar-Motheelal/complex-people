@@ -18,6 +18,7 @@ import { VisitorsComponent } from './components/visitors/visitors.component';
 import { VisitorsDetailsComponent } from './components/visitors-details/visitors-details.component';
 import { AddApartmentComponent } from './components/add-apartment/add-apartment.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AddResidentComponent } from './components/add-resident/add-resident.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     VisitorsComponent,
     VisitorsDetailsComponent,
     AddApartmentComponent,
+    AddResidentComponent,
   ],
   imports: [
     BrowserModule,
