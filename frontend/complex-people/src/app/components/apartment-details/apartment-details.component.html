@@ -1,20 +1,27 @@
-<h2>Apartment Details</h2>
-<form action="" *ngIf="apartment">
-  <fieldset>
-    <legend>Sizing Details</legend>
-    <label for="bedrooms">Total Bedrooms: </label>
-    <input id="bedrooms" name="bedrooms" [(ngModel)]="apartment.bedrooms" type="text">
+<article *ngIf="apartment">
+  <section>
+    <h2>Apartment Details</h2>
+    <form action="" *ngIf="apartment">
+      <fieldset>
+        <legend>Sizing Details</legend>
+        <label for="bedrooms">Total Bedrooms: </label>
+        <input id="bedrooms" name="bedrooms" [(ngModel)]="apartment.bedrooms" type="text">
 
-    <label for="bathrooms">Total Bathrooms: </label>
-    <input id="bathrooms" name="bathrooms" [(ngModel)]="apartment.bathrooms" type="text">
+        <label for="bathrooms">Total Bathrooms: </label>
+        <input id="bathrooms" name="bathrooms" [(ngModel)]="apartment.bathrooms" type="text">
 
-    <label for="parking">Total Parking Spaces: </label>
-    <input id="parking" name="parkingSpaces" [(ngModel)]="apartment.parkingSpaces" type="text">
-  </fieldset>
+        <label for="parking">Total Parking Spaces: </label>
+        <input id="parking" name="parkingSpaces" [(ngModel)]="apartment.parkingSpaces" type="text">
+      </fieldset>
+    </form>
+    <button>Save Changes</button>
 
-  <fieldset>
-    <legend>Current Residents Details</legend>
-  </fieldset>
-</form>
+  </section>
 
-<button>Save Changes</button>
+  <section>
+    <h2>Current Residents for Unit Number {{apartment.unitNumber}}</h2>
+    <section *ngFor="let resident of residents">
+      <button [routerLink]="'/residents/' + resident.peopleId">{{resident.firstName}} {{resident.lastName}}</button>
+    </section>
+  </section>
+</article>
