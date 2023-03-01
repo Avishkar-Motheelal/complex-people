@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import {CredentialResponse, PromptMomentNotification} from "google-one-tap";
 import {environment} from "../../environments/environment";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -20,7 +20,8 @@ export class LoginComponent implements OnInit {
               private route: ActivatedRoute,
               private accountService: AccountService,
               private formBuilder: FormBuilder,
-              private alertService: AlertService) {
+              private alertService: AlertService,
+              private ngZone: NgZone) {
   }
 
   private clientId = environment.clientId
@@ -56,23 +57,26 @@ export class LoginComponent implements OnInit {
   }
 
   async handleCredentialResponse(response: CredentialResponse) {
-    this.accountService.LoginWithGoogle(response.credential).subscribe(
-      (response: HttpResponse<any>) => {
+    this.accountService.LoginWithGoogle(response.credential).subscribe({
+      next: (response: HttpResponse<any>) => {
         console.log(response);
         let user: User = response.body;
         let responseCode = response.status;
         localStorage.setItem("user", JSON.stringify(user));
 
         if (responseCode === 200) {
-          this.router.navigate(['/dashboard']);
+          this.ngZone.run(() => {
+            this.router.navigate(['/dashboard']);
+          });
         } else if (responseCode === 201) {
-          this.router.navigate(['/account/details']);
+          this.ngZone.run(() => {
+            this.router.navigate(['/account/details']);
+          });
         }
-      },
-      (error: any) => {
-        console.log(error);
+      }, error: (error: any) => {
+        this.alertService.error(error);
       }
-    );
+    });
   }
 
   get formControls() { // @ts-ignore
