@@ -7,6 +7,28 @@ body {
   overflow-x: hidden;
 }
 
+.cta {
+  border: none;
+  background-color: #04AA6D;
+  font-weight: 500;
+  font-size: 14pt;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 15px;
+  color: white;
+}
+
+.outline_btn {
+  background-color: transparent;
+  border-radius: 15px;
+  border: 1px solid;
+  font-weight: 500;
+  font-size: 14pt;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #04AA6D;
+}
+
 .issue_status_1 {
   background-color: #04AA6D;
   width: max-content;

@@ -2,7 +2,7 @@
 
 <section class="card_content">
 
-  <section class="issue_card" [hidden]="issues.length == 0" *ngFor="let issue of issues">
+  <section class="issue_card" [hidden]="issues.length == 0" *ngFor="let issue of issues" (click)="updateForm($event, issue)">
     <p id="unit_name">{{issue.date | date:'fullDate'}}</p>
 
     <h2 id="issue_desc">Unit {{issue.complainant.apartmentsId.unitNumber}}</h2>
@@ -14,5 +14,7 @@
       </svg>{{issue.complainant.peopleId.firstName}} {{issue.complainant.peopleId.lastName}}</p>
   </section>
 </section>
+
+<app-maintenance-form id="maintenance-form" [hidden]="formHidden"></app-maintenance-form>
 
 
