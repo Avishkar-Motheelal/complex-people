@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CredentialResponse, PromptMomentNotification} from "google-one-tap";
+import {CredentialResponse} from "google-one-tap";
 import {environment} from "../../environments/environment";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -47,11 +47,11 @@ export class LoginComponent implements OnInit {
       google.accounts.id.renderButton(
         // @ts-ignore
         document.getElementById("buttonDiv"),
-        {theme: "outline", size: "large", width: "100%"}
+        {theme: "outline", size: "large", width: "50%"}
       );
       // @ts-ignore
-      google.accounts.id.prompt((notification: PromptMomentNotification) => {
-      });
+      // google.accounts.id.prompt((notification: PromptMomentNotification) => {
+      // });
     };
   }
 
