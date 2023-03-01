@@ -3,6 +3,7 @@ package com.example.complexpeople.controller;
 import com.example.complexpeople.dto.NewPersonDTO;
 import com.example.complexpeople.dto.RoleDTO;
 import com.example.complexpeople.dto.UpdatePersonDTO;
+import com.example.complexpeople.dto.UpdateUserPersonDTO;
 import com.example.complexpeople.exception.PersonExistsException;
 import com.example.complexpeople.exception.PersonNotFoundException;
 import com.example.complexpeople.exception.RoleAlreadyAssignedException;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 public class PeopleController {
 
     private final PeopleService peopleService;
+
 
     @GetMapping
 
@@ -39,12 +41,13 @@ public class PeopleController {
     @ResponseStatus(HttpStatus.CREATED)
     public Person addPerson(@Valid @RequestBody NewPersonDTO newPersonDTO) throws PersonExistsException {
         return peopleService.addPerson(newPersonDTO);
-
     }
 
 
     @PatchMapping("/{id}")
-    public Person updatePerson(@PathVariable Integer id, @RequestBody UpdatePersonDTO updatePersonDTO) throws PersonNotFoundException, PersonExistsException {
+    public Person updatePerson(@PathVariable Integer id, @RequestBody UpdateUserPersonDTO updateUserPersonDTO) throws PersonNotFoundException, PersonExistsException {
+        System.out.println(updateUserPersonDTO);
+        UpdatePersonDTO updatePersonDTO = updateUserPersonDTO.toUpdatePersonDTO();
         return peopleService.updatePerson(id, updatePersonDTO);
     }
 

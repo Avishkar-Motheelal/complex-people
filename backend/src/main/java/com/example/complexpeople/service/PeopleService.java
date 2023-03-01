@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -51,6 +52,7 @@ public class PeopleService {
         return peopleRepo.save(person);
     }
 
+
     private void updatePersonRoleId(Person person) {
         List<Role> roles = person.getRoles();
 
@@ -65,13 +67,14 @@ public class PeopleService {
         person.setRoles(updatedRoles);
     }
 
+
     private void updatePersonDocumentTypeId(Person person) {
         DocumentType personDocumentType = person.getIdentificationDocument().getDocumentType();
 
         Integer repoId = documentTypeRepository.
-                findByTypeIgnoreCase(personDocumentType.getType()).
-                orElseThrow().
-                getDocumentTypesId();
+            findByTypeIgnoreCase(personDocumentType.getType()).
+            orElseThrow().
+            getDocumentTypesId();
 
         personDocumentType.setDocumentTypesId(repoId);
     }
@@ -84,7 +87,10 @@ public class PeopleService {
         updatePersonDocumentTypeId(person);
 
         // make sure id given doesn't actually exist yet :0
-        if (peopleRepo.existsByIdentificationDocumentNumber(person.getIdentificationDocument().getNumber())) {
+        String originalIdNumber = person.getIdentificationDocument().getNumber();
+        String updateIdNumber = updatedPerson.getIdentificationDocument().getNumber();
+
+        if (!Objects.equals(originalIdNumber, updateIdNumber) && peopleRepo.existsByIdentificationDocumentNumber(updateIdNumber)) {
             throw new PersonExistsException();
         }
 

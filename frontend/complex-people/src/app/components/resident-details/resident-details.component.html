@@ -1,41 +1,101 @@
-
 <h2>Resident Details</h2>
-<form action="" *ngIf="person">
-  <fieldset>
-    <legend>General Information</legend>
-    <label for="resident-first-name">First Name: </label>
-    <input id="resident-first-name" name="firstName" [(ngModel)]="person.firstName" type="text">
 
-    <label for="resident-last-name">Last name: </label>
-    <input id="resident-last-name" name="lastName" [(ngModel)]="person.lastName" type="text">
-  </fieldset>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="form">
+  <label>First Name</label>
+  <input type="text" formControlName="firstName" class="form-control"
+         [ngClass]="{ 'is-invalid': submitted && formControls['firstName'].errors }"/>
+  <div *ngIf="submitted && formControls['firstName'].errors" class="invalid-feedback">
+    <div *ngIf="formControls['firstName'].errors?.['required']">First Name is required</div>
+  </div>
 
-  <fieldset>
-    <legend>Identification Details</legend>
-    <label for="id-type">Type: </label>
-    <input id="id-type" name="identificationDocumentType" [(ngModel)]="person.identificationDocumentType" type="text">
+  <label>Last Name</label>
+  <input type="text" formControlName="lastName" class="form-control"
+         [ngClass]="{ 'is-invalid': submitted && formControls['lastName'].errors }"/>
+  <div *ngIf="submitted && formControls['lastName'].errors" class="invalid-feedback">
+    <div *ngIf="formControls['lastName'].errors?.['required']">Last Name is required</div>
+  </div>
 
-    <label for="id-number">Number: </label>
-    <input id="id-number" name="identificationDocumentNumber" [(ngModel)]="person.identificationDocumentNumber" type="text">
-  </fieldset>
+  <label>Contact Number</label>
+  <input type="text" formControlName="phoneNumber"
+         [ngClass]="{ 'is-invalid': submitted && formControls['phoneNumber'].errors }"/>
+  <div *ngIf="submitted && formControls['phoneNumber'].errors" class="invalid-feedback">
+    <div *ngIf="formControls['phoneNumber'].errors?.['required']">Email is required</div>
+  </div>
 
-  <fieldset>
-    <legend>Contact Details</legend>
-    <label for="email">Email Address: </label>
-    <input id="email" name="emailAddress" [(ngModel)]="person.emailAddress" type="email">
+  <label>Contact Email</label>
+  <input type="text" formControlName="email"
+         [ngClass]="{ 'is-invalid': submitted && formControls['email'].errors }"/>
+  <div *ngIf="submitted && formControls['email'].errors" class="invalid-feedback">
+    <div *ngIf="formControls['email'].errors?.['required']">Email is required</div>
+  </div>
 
-    <label for="phone">Phone Number: </label>
-    <input id="phone" name="phone" [(ngModel)]="person.phoneNumber" type="tel">
-  </fieldset>
+  <label>Identity document type</label>
+  <label>
+    <input type="radio" formControlName="type" value="ID" class="form-control"
+           [ngClass]="{ 'is-invalid': submitted && formControls['type'].errors }"/>
+    ID
+  </label>
+  <label>
+    <input type="radio" formControlName="type" value="PASSPORT" class="form-control"
+           [ngClass]="{ 'is-invalid': submitted && formControls['type'].errors }"/>
+    Passport
+  </label>
+  <div *ngIf="submitted && formControls['type'].errors" class="invalid-feedback">
+    <div *ngIf="formControls['type'].errors?.['required']">Identity document type is required</div>
+  </div>
 
-  <fieldset>
-    <legend>Apartment Details</legend>
-<!--    TODO: get in what apartment a person lives. Use get /apartments and filter :'(-->
-  </fieldset>
+  <label>Identity document number</label>
+  <input type="text" formControlName="number"
+         [ngClass]="{ 'is-invalid': submitted && formControls['number'].errors }"/>
+  <div *ngIf="submitted && formControls['number'].errors" class="invalid-feedback">
+    <div *ngIf="formControls['number'].errors?.['required']">Email is required</div>
+  </div>
 
-  <!--    <label for="">: </label>-->
-  <!--    <input id="" [(ngModel)]="person." type="text">-->
 
+  <div>
+    <button [disabled]="loading">
+      Save
+    </button>
+  </div>
 </form>
 
-<button>Save Changes</button>
+<!--<form action="" *ngIf="person">-->
+<!--  <fieldset>-->
+<!--    <legend>General Information</legend>-->
+<!--    <label for="resident-first-name">First Name: </label>-->
+<!--    <input id="resident-first-name" name="firstName" [(ngModel)]="person.firstName" type="text">-->
+
+<!--    <label for="resident-last-name">Last name: </label>-->
+<!--    <input id="resident-last-name" name="lastName" [(ngModel)]="person.lastName" type="text">-->
+<!--  </fieldset>-->
+
+<!--  <fieldset>-->
+<!--    <legend>Identification Details</legend>-->
+<!--    <label for="id-type">Type: </label>-->
+<!--    <input id="id-type" name="identificationDocumentType" [(ngModel)]="person.identificationDocumentType" type="text">-->
+
+<!--    <label for="id-number">Number: </label>-->
+<!--    <input id="id-number" name="identificationDocumentNumber" [(ngModel)]="person.identificationDocumentNumber"-->
+<!--           type="text">-->
+<!--  </fieldset>-->
+
+<!--  <fieldset>-->
+<!--    <legend>Contact Details</legend>-->
+<!--    <label for="email">Email Address: </label>-->
+<!--    <input id="email" name="emailAddress" [(ngModel)]="person.emailAddress" type="email">-->
+
+<!--    <label for="phone">Phone Number: </label>-->
+<!--    <input id="phone" name="phone" [(ngModel)]="person.phoneNumber" type="tel">-->
+<!--  </fieldset>-->
+
+<!--  <fieldset>-->
+<!--    <legend>Apartment Details</legend>-->
+<!--    &lt;!&ndash;    TODO: get in what apartment a person lives. Use get /apartments and filter :'(&ndash;&gt;-->
+<!--  </fieldset>-->
+
+<!--  &lt;!&ndash;    <label for="">: </label>&ndash;&gt;-->
+<!--  &lt;!&ndash;    <input id="" [(ngModel)]="person." type="text">&ndash;&gt;-->
+
+<!--</form>-->
+
+<!--<button>Save Changes</button>-->

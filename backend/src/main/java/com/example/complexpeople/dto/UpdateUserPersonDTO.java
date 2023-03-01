@@ -29,4 +29,16 @@ public class UpdateUserPersonDTO {
         newPersonDTO.setRoleDTO(roleDTO);
         return newPersonDTO;
     }
+
+
+    public UpdatePersonDTO toUpdatePersonDTO() {
+        NewPersonDTO newPersonDTO = toNewPersonDTO();
+        UpdatePersonDTO updatePersonDTO = new UpdatePersonDTO();
+        updatePersonDTO.setFirstName(newPersonDTO.getFirstName());
+        updatePersonDTO.setLastName(newPersonDTO.getLastName());
+        updatePersonDTO.setPhoneNumber(newPersonDTO.getPhoneNumber());
+        updatePersonDTO.setEmailAddress(newPersonDTO.getEmailAddress());
+        updatePersonDTO.setIdentificationDocumentDTO(newPersonDTO.getIdentificationDocumentDTO());
+        return updatePersonDTO;
+    }
 }
