@@ -1,0 +1,27 @@
+<aside>
+  <section class="dash_card">
+    <p class="card_title_quick">Quick Actions</p>
+    <button class="quick_act_btn">Add Tenant</button>
+    <button class="quick_act_btn">Add Visitor</button>
+    <button class="quick_act_btn">Add Apartment</button>
+  </section>
+
+  <section class="tenant_request_section">
+    <h3>Tenant Request</h3>
+    <p [hidden]="issues.length!=0">No Maintenance issues or complaints found</p>
+    <p [hidden]="issues.length==0" id="date_req">FRI, 28 JAN 2022</p>
+
+    <section [hidden]="issues.length==0" class="issue_card_small" *ngFor="let issue of issues">
+      <img src="assets/maintenance.svg" alt="" width="40" height="40">
+      <div>
+        <p id="unit_name_id">Unit {{issue.complainant.apartmentsId.unitNumber}}</p>
+        <p id="issue_title">{{issue.description}}</p>
+      </div>
+
+      <p id="issue_status" class="issue_status_{{issue.status.statusId}}">{{issue.status.status}}</p>
+
+    </section>
+  </section>
+
+
+</aside>
