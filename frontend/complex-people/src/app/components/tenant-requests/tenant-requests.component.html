@@ -12,7 +12,7 @@
     <p [hidden]="issues.length==0" id="date_req">FRI, 28 JAN 2022</p>
 
     <section [hidden]="issues.length==0" class="issue_card_small" *ngFor="let issue of issues">
-      <img src="assets/maintenance.svg" alt="" width="40" height="40">
+      <img src="../../../assets/maintenance.svg" alt="" width="40" height="40">
       <div>
         <p id="unit_name_id">Unit {{issue.complainant.apartmentsId.unitNumber}}</p>
         <p id="issue_title">{{issue.description}}</p>

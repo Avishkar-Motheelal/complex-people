@@ -1,7 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Person} from "../../models/person.model";
 import {ActivatedRoute} from "@angular/router";
-import {PeopleService} from "../../services/people.service";
 import {Apartment} from "../../models/apartment.model";
 import {ApartmentsService} from "../../services/apartments.service";
 
