@@ -18,7 +18,6 @@ export class ResidentsComponent {
 
   getResident(): void {
     this.peopleService.getPeople().subscribe((people) => {
-      console.log(people);
       this.residents = people.filter(person => person.roles.some(role => role === "RESIDENT"))
     })
   }

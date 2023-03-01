@@ -2,6 +2,9 @@ import {Component} from '@angular/core';
 import {Person} from "../../models/person.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PeopleService} from "../../services/people.service";
+import {AccessCard} from "../../models/access-card.model";
+import {CardsService} from "../../services/cards.service";
+
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../../services/account.service";
 import {AlertService} from "../../services/alert.service";
@@ -16,6 +19,8 @@ import {HttpResponse} from "@angular/common/http";
 })
 export class ResidentDetailsComponent {
   // @Input() person?: Person;
+  @Input() person?: Person;
+  @Input() cards?: AccessCard[];
 
   constructor(
     private route: ActivatedRoute,
@@ -24,8 +29,8 @@ export class ResidentDetailsComponent {
     private router: Router,
     private accountService: AccountService,
     private alertService: AlertService
-  ) {
-  }
+    private cardsService: CardsService,
+  ) {}
 
   form!: FormGroup;
   loading = false;
@@ -33,6 +38,8 @@ export class ResidentDetailsComponent {
   id = Number(this.route.snapshot.paramMap.get('id'));
 
   ngOnInit(): void {
+    this.getPerson();
+    this.getCards();
     this.getPerson().pipe(first()).subscribe({
       next: (person: Person) => {
         this.form = this.formBuilder.group({
@@ -93,5 +100,23 @@ export class ResidentDetailsComponent {
         }
       });
   }
+
+  getCards() {
+    this.cards = [
+      {
+        accessCardId: '37d88e22-8f42-4f01-a37d-671a7086f454',
+        activated: false,
+      },
+      {
+        accessCardId: 'a4b63a63-79ec-4c19-9124-cfda4d4c0a4b',
+        activated: true,
+      },
+    ];
+
+    // for actual push
+    const id = this.route.snapshot.paramMap.get('id');
+    this.cardsService.getCardForPerson(id);
+  }
+
 
 }

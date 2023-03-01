@@ -1,0 +1,20 @@
+<section>
+  <h2>Add a New Apartment</h2>
+
+  <form [formGroup]="apartmentForm" (ngSubmit)="onSubmit()">
+    <label for="unitNumber">Unit Number:</label>
+    <input type="number" id="unitNumber" formControlName="unitNumber" min="1" max="2,147,483,647" required>
+
+    <label for="bedrooms">Total Bedrooms:</label>
+    <input type="number" id="bedrooms" formControlName="bedrooms" min="1" max="6" required>
+
+    <label for="bathrooms">Total Bathrooms:</label>
+    <input type="number" id="bathrooms" formControlName="bathrooms" min="1" max="6" required>
+
+    <label for="parkingSpaces">Total Parking Spaces:</label>
+    <input type="number" id="parkingSpaces" formControlName="parkingSpaces" min="1" max="6" required>
+
+    <button type="submit">Save</button>
+  </form>
+  <p *ngIf="errorMessage">{{ errorMessage }}</p>
+</section>

@@ -12,6 +12,8 @@ import {ResidentsComponent} from "./components/residents/residents.component";
 import {ResidentDetailsComponent} from "./components/resident-details/resident-details.component";
 import {VisitorsComponent} from "./components/visitors/visitors.component";
 import {VisitorsDetailsComponent} from "./components/visitors-details/visitors-details.component";
+import {AddApartmentComponent} from "./components/add-apartment/add-apartment.component";
+import {AddResidentComponent} from "./components/add-resident/add-resident.component";
 import {LogoutComponent} from "./components/logout/logout.component";
 
 const routes: Routes = [
@@ -28,6 +30,17 @@ const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "logout", component: LogoutComponent},
   {path: "register", component: RegisterComponent},
+  {path: "", redirectTo: "dashboard", pathMatch: 'full'},
+  {path: "dashboard", component: DashboardComponent, pathMatch: 'full'},
+  {path: "maintenance", component: MaintenanceComponent, pathMatch: 'full'},
+  { path: 'apartments', component: ApartmentsComponent },
+  { path: 'residents', component: ResidentsComponent },
+  { path: 'residents/:id', component: ResidentDetailsComponent},
+  { path: 'apartments/:id', component: ApartmentDetailsComponent},
+  {path: 'visitors', component: VisitorsComponent},
+  {path: 'visitors/:id', component: VisitorsDetailsComponent},
+  {path: 'new-apartment', component: AddApartmentComponent},
+  {path: 'new-resident', component: AddResidentComponent},
 ];
 
 @NgModule({
