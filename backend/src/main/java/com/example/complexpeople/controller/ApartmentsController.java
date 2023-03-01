@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/apartments")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class ApartmentsController {
 
     private final ApartmentsRepository apartmentsRepo;
@@ -23,6 +24,11 @@ public class ApartmentsController {
     @GetMapping
     public Iterable<Apartment> getAll() {
         return apartmentsRepo.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Apartment getApartment(@PathVariable Integer id) throws ApartmentNotFoundException {
+        return apartmentsRepo.findById(id).orElseThrow(ApartmentNotFoundException::new);
     }
 
     @PostMapping

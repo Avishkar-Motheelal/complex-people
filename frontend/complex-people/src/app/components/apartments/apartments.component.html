@@ -1,0 +1,23 @@
+<table>
+  <caption>Apartments</caption>
+  <thead>
+  <tr>
+    <th scope="col">Unit Number</th>
+    <th scope="col">Total Bedrooms</th>
+    <th scope="col">Total Bathrooms</th>
+    <th scope="col">Total Parking Spaces</th>
+    <th scope="col">View Apartment</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let apartment of apartments">
+    <td hidden>{{apartment.apartmentsId}}</td>
+    <td>{{apartment.unitNumber}}</td>
+    <td>{{apartment.bedrooms}}</td>
+    <td>{{apartment.bathrooms}}</td>
+    <td>{{apartment.parkingSpaces}}</td>
+    <td> <button [routerLink]="'/apartments/' + apartment.apartmentsId">View</button></td>
+  </tr>
+  </tbody>
+</table>
+

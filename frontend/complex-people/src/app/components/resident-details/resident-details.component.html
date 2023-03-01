@@ -1,0 +1,41 @@
+
+<h2>Resident Details</h2>
+<form action="" *ngIf="person">
+  <fieldset>
+    <legend>General Information</legend>
+    <label for="resident-first-name">First Name: </label>
+    <input id="resident-first-name" name="firstName" [(ngModel)]="person.firstName" type="text">
+
+    <label for="resident-last-name">Last name: </label>
+    <input id="resident-last-name" name="lastName" [(ngModel)]="person.lastName" type="text">
+  </fieldset>
+
+  <fieldset>
+    <legend>Identification Details</legend>
+    <label for="id-type">Type: </label>
+    <input id="id-type" name="identificationDocumentType" [(ngModel)]="person.identificationDocumentType" type="text">
+
+    <label for="id-number">Number: </label>
+    <input id="id-number" name="identificationDocumentNumber" [(ngModel)]="person.identificationDocumentNumber" type="text">
+  </fieldset>
+
+  <fieldset>
+    <legend>Contact Details</legend>
+    <label for="email">Email Address: </label>
+    <input id="email" name="emailAddress" [(ngModel)]="person.emailAddress" type="email">
+
+    <label for="phone">Phone Number: </label>
+    <input id="phone" name="phone" [(ngModel)]="person.phoneNumber" type="tel">
+  </fieldset>
+
+  <fieldset>
+    <legend>Apartment Details</legend>
+<!--    TODO: get in what apartment a person lives. Use get /apartments and filter :'(-->
+  </fieldset>
+
+  <!--    <label for="">: </label>-->
+  <!--    <input id="" [(ngModel)]="person." type="text">-->
+
+</form>
+
+<button>Save Changes</button>

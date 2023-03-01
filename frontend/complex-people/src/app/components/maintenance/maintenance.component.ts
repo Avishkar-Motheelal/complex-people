@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {IssuesModel} from "../models/issues_model";
-import {IssuesService} from "../services/issues.service";
+import {IssuesModel} from "../../models/issues_model";
+import {IssuesService} from "../../services/issues.service";
 
 @Component({
   selector: 'app-maintenance',

@@ -3,11 +3,17 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavigationWebComponent } from './navigation-web/navigation-web.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { MaintenanceComponent } from './maintenance/maintenance.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { MaintenanceComponent } from './components/maintenance/maintenance.component';
 import {HttpClientModule} from "@angular/common/http";
-import { TenantRequestsComponent } from './tenant-requests/tenant-requests.component';
+import { TenantRequestsComponent } from './components/tenant-requests/tenant-requests.component';
+import { NavigationWebComponent } from './components/navigation-web/navigation-web.component';
+
+import { ApartmentsComponent } from './components/apartments/apartments.component';
+import { ResidentsComponent } from './components/residents/residents.component';
+import { ApartmentDetailsComponent } from './components/apartment-details/apartment-details.component';
+import { ResidentDetailsComponent } from './components/resident-details/resident-details.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -15,12 +21,20 @@ import { TenantRequestsComponent } from './tenant-requests/tenant-requests.compo
     NavigationWebComponent,
     DashboardComponent,
     MaintenanceComponent,
-    TenantRequestsComponent
+    TenantRequestsComponent,
+    NavigationWebComponent,
+    ApartmentsComponent,
+    ResidentsComponent,
+    ApartmentDetailsComponent,
+    ResidentDetailsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

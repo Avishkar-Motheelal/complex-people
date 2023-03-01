@@ -17,12 +17,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/people")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class PeopleController {
 
     private final PeopleService peopleService;
 
     @GetMapping
+
     public Iterable<Person> getPeople() {
+        // make sure role exists
         return peopleService.findAll();
     }
 

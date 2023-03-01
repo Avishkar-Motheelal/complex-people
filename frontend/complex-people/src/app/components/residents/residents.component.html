@@ -1,0 +1,26 @@
+<table>
+  <caption>Residents</caption>
+  <thead>
+  <tr>
+    <th scope="col">First Name</th>
+    <th scope="col">Last Name</th>
+    <th scope="col">Identification Number</th>
+    <th scope="col">Identification Type</th>
+    <th scope="col">Phone Number</th>
+    <th scope="col">Email Address</th>
+    <th scope="col">View Resident</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let resident of residents">
+    <td hidden>{{resident.peopleId}}</td>
+    <td>{{resident.firstName}}</td>
+    <td>{{resident.lastName}}</td>
+    <td>{{resident.identificationDocumentNumber}}</td>
+    <td>{{resident.identificationDocumentType}}</td>
+    <td>{{resident.phoneNumber}}</td>
+    <td>{{resident.emailAddress}}</td>
+    <td> <button [routerLink]="'/residents/' + resident.peopleId">View</button></td>
+  </tr>
+  </tbody>
+</table>
