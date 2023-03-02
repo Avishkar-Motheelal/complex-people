@@ -22,6 +22,7 @@ public class ControllerAdvisor {
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
 
+
     @ApiResponse(responseCode = "404")
     @ExceptionHandler(ComplaintNotFoundException.class)
     public ResponseEntity<ExceptionBody> handleComplaintNotFoundException(ComplaintNotFoundException exception) {
@@ -29,6 +30,7 @@ public class ControllerAdvisor {
         ExceptionBody body = new ExceptionBody(dateTime, exception.getMessage());
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
+
 
     @ApiResponse(responseCode = "403")
     @ExceptionHandler(ComplaintChangeException.class)
@@ -42,6 +44,15 @@ public class ControllerAdvisor {
     @ApiResponse(responseCode = "400")
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<ExceptionBody> handleValidationException(ValidationException exception) {
+        String dateTime = OffsetDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
+        ExceptionBody body = new ExceptionBody(dateTime, exception.getMessage());
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
+
+
+    @ApiResponse(responseCode = "400")
+    @ExceptionHandler(UserExistsException.class)
+    public ResponseEntity<ExceptionBody> handleUserExistsException(UserExistsException exception) {
         String dateTime = OffsetDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
         ExceptionBody body = new ExceptionBody(dateTime, exception.getMessage());
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
@@ -69,7 +80,6 @@ public class ControllerAdvisor {
         ExceptionBody body = new ExceptionBody(dateTime, exception.getMessage());
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
-
 
 
     @ApiResponse(responseCode = "400")

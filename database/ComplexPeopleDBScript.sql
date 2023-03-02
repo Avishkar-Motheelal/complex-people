@@ -125,5 +125,15 @@ CREATE TABLE [Complaints] (
   FOREIGN KEY ([Respondent]) REFERENCES People([PeopleId])
 );
 
+CREATE TABLE [Users] (
+  [UserId] INT IDENTITY(1,1) NOT NULL,
+  [Email] NVARCHAR(MAX) NOT NULL,
+  [Password] NVARCHAR(MAX) NOT NULL,
+  [Enabled] BIT NOT NULL,
+  [PeopleId] INT NOT NULL,
+  PRIMARY KEY ([UserId]),
+  FOREIGN KEY ([PeopleId]) REFERENCES People([PeopleId])
+);
+
 INSERT INTO [DocumentTypes]([Type]) VALUES ('PASSPORT'), ('ID');
 INSERT INTO [Roles]([Type]) VALUES ('STAFF'), ('RESIDENT'), ('VISITOR');

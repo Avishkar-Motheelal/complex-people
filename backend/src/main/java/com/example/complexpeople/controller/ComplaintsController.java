@@ -18,7 +18,6 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
 @Tag(name = "Complaints and/or Maintenance")
 public class ComplaintsController {
 

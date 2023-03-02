@@ -1,0 +1,7 @@
+.alert {
+  display: inline-block;
+  margin-left: 33%;
+  padding: 10px;
+  background-color: #f44336;
+  color: white;
+}

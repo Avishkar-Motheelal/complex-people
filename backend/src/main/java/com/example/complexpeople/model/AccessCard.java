@@ -15,10 +15,16 @@ import java.util.UUID;
 public class AccessCard {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(columnDefinition = "uuid")
-    private UUID accessCardsId;
+    @Column(name = "accessCardsId", columnDefinition = "uuid")
+    private UUID accessCardId;
     private boolean activated;
     @ManyToOne()
     @JoinColumn(name = "PeopleId")
     private Person person;
+
+
+    public AccessCard(Person person, boolean activated) {
+        this.person = person;
+        this.activated = activated;
+    }
 }
