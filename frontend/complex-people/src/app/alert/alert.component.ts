@@ -7,7 +7,8 @@ import {AlertService} from "../services/alert.service";
 
 @Component({
   selector: 'alert',
-  templateUrl: 'alert.component.html'
+  templateUrl: 'alert.component.html',
+  styleUrls: ['alert.component.css']
 })
 export class AlertComponent implements OnInit, OnDestroy {
   @Input() id = 'default-alert';
@@ -52,13 +53,11 @@ export class AlertComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // unsubscribe to avoid memory leaks
     this.alertSubscription.unsubscribe();
     this.routeSubscription.unsubscribe();
   }
 
   removeAlert(alert: Alert) {
-    // check if already removed to prevent error on auto close
     if (!this.alerts.includes(alert)) return;
 
     if (this.fade) {
@@ -70,7 +69,6 @@ export class AlertComponent implements OnInit, OnDestroy {
         this.alerts = this.alerts.filter(x => x !== alert);
       }, 250);
     } else {
-      // remove alert
       this.alerts = this.alerts.filter(x => x !== alert);
     }
   }
@@ -78,13 +76,13 @@ export class AlertComponent implements OnInit, OnDestroy {
   cssClass(alert: Alert) {
     if (!alert) return;
 
-    const classes = ['alert', 'alert-dismissible', 'mt-4', 'container'];
+    const classes = ['alert'];
 
     const alertTypeClass = {
-      [AlertType.Success]: 'alert-success',
-      [AlertType.Error]: 'alert-danger',
-      [AlertType.Info]: 'alert-info',
-      [AlertType.Warning]: 'alert-warning'
+      [AlertType.Success]: '',
+      [AlertType.Error]: '',
+      [AlertType.Info]: '',
+      [AlertType.Warning]: ''
     }
 
     if (alert.type !== undefined) {

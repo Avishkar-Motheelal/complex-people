@@ -58,7 +58,6 @@ export class LoginComponent implements OnInit {
   async handleCredentialResponse(response: CredentialResponse) {
     this.accountService.LoginWithGoogle(response.credential).subscribe(
       (response: HttpResponse<any>) => {
-        console.log(response);
         let user: User = response.body;
         let responseCode = response.status;
         localStorage.setItem("user", JSON.stringify(user));
@@ -99,37 +98,9 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl(returnUrl);
         },
         error: error => {
-          this.alertService.error(error);
+          this.alertService.error("Login Failed. Email or password incorrect");
           this.loading = false;
         }
       });
   }
-
-  // async handleCredentialResponse(response: CredentialResponse) {
-  //   await this.accountService.LoginWithGoogle(response.credential).subscribe(
-  //     (x:any) => {
-  //       console.log(x);
-  //       localStorage.setItem("token", x.jwttoken);
-  //       // this._ngZone.run(() => {
-  //       //   this.router.navigate(['/logout']);
-  //       // })
-  //       },
-  //     (error:any) => {
-  //       console.log(error);
-  //     }
-  //   );
-  // }
-  // get formControls() { // @ts-ignore
-  //   return this.authForm.controls; }
-  //
-  // onSubmit(){
-  //   this.isSubmitted = true;
-  //   // @ts-ignore
-  //   if(this.authForm.invalid){
-  //     return;
-  //   }
-  //   // @ts-ignore
-  //   this.authService.signIn(this.authForm.value);
-  //   // this.router.navigateByUrl('/admin');
-  // }
 }

@@ -8,7 +8,7 @@ import {CardsService} from "../../services/cards.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../../services/account.service";
 import {AlertService} from "../../services/alert.service";
-import {map, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {first} from "rxjs/operators";
 import {HttpResponse} from "@angular/common/http";
 
@@ -53,7 +53,7 @@ export class ResidentDetailsComponent {
         });
       },
       error: error => {
-        this.alertService.error(error);
+        this.alertService.error("Failed to update.");
         this.loading = false;
       }
     });

@@ -2,7 +2,7 @@
   <fieldset>
     <legend>Login</legend>
     <label>Email</label>
-    <input type="text" formControlName="email"
+    <input type="email" formControlName="email"
            [ngClass]="{ 'is-invalid': submitted && formControls['email'].errors }"/>
     <div *ngIf="submitted && formControls['email'].errors" class="invalid-feedback">
       <div *ngIf="formControls['email'].errors?.['required']">Email is required</div>
