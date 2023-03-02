@@ -55,29 +55,31 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()
-            .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class)
-            .authorizeHttpRequests()
-            .requestMatchers(HttpMethod.POST, "/authenticate").permitAll()
-            .requestMatchers("/v3/api-docs/**",
-                "/swagger-ui/**",
-                "/swagger-ui.html",
-                "/docs/**",
-                "/swagger",
-                "/docs",
-                "/users/**",
-                "/apartments",
-                "/people/**",
-                "/**",
-                "/login/oauth2/code/google").permitAll().anyRequest().authenticated()
-            .and()
-            .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
-            .and()
-            .sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-            .authenticationProvider(authenticationProvider())
-            .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+                .csrf().disable()
+                .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class)
+                .authorizeHttpRequests()
+                .requestMatchers(HttpMethod.POST, "/authenticate").permitAll()
+                .requestMatchers(
+                        "/login/oauth2/code/google",
+                        "/v3/api-docs/**",
+                        "/swagger-ui/**",
+                        "/swagger-ui.html",
+                        "/docs/**",
+                        "/swagger",
+                        "/docs",
+                        "/users/**",
+                        "/apartments",
+                        "/people/**",
+                        "/**"
+                ).permitAll().anyRequest().authenticated()
+                .and()
+                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authenticationProvider(authenticationProvider())
+                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }

@@ -59,19 +59,20 @@ export class LoginComponent implements OnInit {
   async handleCredentialResponse(response: CredentialResponse) {
     this.accountService.LoginWithGoogle(response.credential).subscribe({
       next: (response: HttpResponse<any>) => {
-        console.log(response);
+
         let user: User = response.body;
         let responseCode = response.status;
         localStorage.setItem("user", JSON.stringify(user));
 
         if (responseCode === 200) {
-          // this.ngZone.run(() => {
-            this.router.navigateByUrl('/dashboard');
-          // });
+          this.ngZone.run(() => {
+            const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
+            this.router.navigateByUrl(returnUrl);
+          });
         } else if (responseCode === 201) {
-          // this.ngZone.run(() => {
+          this.ngZone.run(() => {
             this.router.navigateByUrl('/account/details');
-          // });
+          });
         }
       }, error: (error: any) => {
         this.alertService.error(error);

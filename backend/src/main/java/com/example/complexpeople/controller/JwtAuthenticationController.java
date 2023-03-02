@@ -31,7 +31,6 @@ import java.util.Objects;
 
 @RequiredArgsConstructor
 @RestController
-//@CrossOrigin
 public class JwtAuthenticationController {
 
     private final AuthenticationManager authenticationManager;

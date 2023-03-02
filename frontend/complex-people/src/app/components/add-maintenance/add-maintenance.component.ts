@@ -35,7 +35,6 @@ export class AddMaintenanceComponent {
         },
         error: err => {
           let elementById = document.getElementById('form_error')!;
-          console.log(err);
           elementById.innerText = err.error.message;
 
         }
