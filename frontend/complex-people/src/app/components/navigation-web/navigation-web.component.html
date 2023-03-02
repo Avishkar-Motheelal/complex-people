@@ -1,18 +1,21 @@
 <header>
-  <button id="menu_btn"><svg height="25" width="25">
-    <image xlink:href="assets/hamburger.svg" height="25" width="25"/>
-  </svg></button>
+  <button id="menu_btn">
+    <svg height="25" width="25">
+      <image xlink:href="assets/hamburger.svg" height="25" width="25"/>
+    </svg>
+  </button>
   <h2>Dashboard</h2>
+  <alert></alert>
   <section class="user_details">
-    <p id="user_name">Montreal Mossaru</p>
-    <p>sahsj@ssajskn.com</p>
+    <p id="user_name">ㅤ</p>
+    <p>ㅤ</p>
   </section>
 </header>
 
 <nav>
   <!--  <h3>ComplexPeople</h3>-->
 
-  <svg id="icon" height="70" width="300" >
+  <svg id="icon" height="70" width="300">
     <image xlink:href="assets/logo.svg" height="90" width="200"/>
   </svg>
 
@@ -20,43 +23,55 @@
     <image xlink:href="assets/bento.svg" height="25" width="25"/>
   </svg>
 
-  <a class="active" href="dashboard">
+  <a class="active" routerLink="dashboard">
     <svg height="25" width="25">
       <image xlink:href="assets/dashboard.svg" height="25" width="25" class="active"/>
-    </svg> <span class="link_text">Dashboard</span> </a>
+    </svg>
+    <span class="link_text">Dashboard</span> </a>
 
-  <a href="apartments"><svg height="25" width="25">
-    <image xlink:href="assets/apartment.svg" height="25" width="25"/>
-  </svg> <span class="link_text">Apartments</span> </a>
+  <a routerLink="apartments">
+    <svg height="25" width="25">
+      <image xlink:href="assets/apartment.svg" height="25" width="25"/>
+    </svg>
+    <span class="link_text">Apartments</span> </a>
 
-  <a href="residents">
+  <a routerLink="residents">
     <svg height="25" width="25">
       <image xlink:href="assets/residents.svg" height="25" width="25"/>
-    </svg> <span class="link_text">Residents</span> </a>
+    </svg>
+    <span class="link_text">Residents</span> </a>
 
-  <a href="maintenance"> <svg height="25" width="25">
-    <image xlink:href="assets/maintenance.svg" height="25" width="25"/>
-  </svg> <span class="link_text">Maintenance</span> </a>
+  <a routerLink="maintenance">
+    <svg height="25" width="25">
+      <image xlink:href="assets/maintenance.svg" height="25" width="25"/>
+    </svg>
+    <span class="link_text">Maintenance</span> </a>
 
-  <a href="#complaints"><svg height="25" width="25">
-    <image xlink:href="assets/report.svg" height="25" width="25"/>
-  </svg> <span class="link_text">Complaints</span> </a>
+  <a routerLink="#complaints">
+    <svg height="25" width="25">
+      <image xlink:href="assets/report.svg" height="25" width="25"/>
+    </svg>
+    <span class="link_text">Complaints</span> </a>
 
-  <a href="visitors"> <svg height="25" width="25">
-    <image xlink:href="assets/visitor.svg" height="25" width="25"/>
-  </svg><span class="link_text">Visitors</span></a>
+  <a routerLink="visitors">
+    <svg height="25" width="25">
+      <image xlink:href="assets/visitor.svg" height="25" width="25"/>
+    </svg>
+    <span class="link_text">Visitors</span></a>
 
-  <a href="#account"> <svg height="25" width="25">
-    <image xlink:href="assets/account.svg" height="25" width="25"/>
-  </svg><span class="link_text">Account</span></a>
+  <a routerLink="#account">
+    <svg height="25" width="25">
+      <image xlink:href="assets/account.svg" height="25" width="25"/>
+    </svg>
+    <span class="link_text">Account</span></a>
 
-  <a href="#logout"> <svg height="25" width="25">
-    <image xlink:href="assets/logout.svg" height="25" width="25"/>
-  </svg><span class="link_text">Logout</span></a>
-
-
+  <a routerLink="logout">
+    <svg height="25" width="25">
+      <image xlink:href="assets/logout.svg" height="25" width="25"/>
+    </svg>
+    <span class="link_text">Logout</span></a>
 </nav>
 
-<main  id="main_content">
+<main id="main_content">
   <router-outlet></router-outlet>
 </main>
