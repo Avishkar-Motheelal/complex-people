@@ -5,7 +5,6 @@ import {RegisterComponent} from "./login/register.component";
 import {AccountDetailsComponent} from "./account-details/account-details.component";
 import {AuthGuard} from "./_helpers";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
-import {ApartmentDetailsComponent} from "./components/apartment-details/apartment-details.component";
 import {ApartmentsComponent} from "./components/apartments/apartments.component";
 import {MaintenanceComponent} from "./components/maintenance/maintenance.component";
 import {ResidentsComponent} from "./components/residents/residents.component";
@@ -35,25 +34,8 @@ const routes: Routes = [
   {path: 'new-resident', component: AddResidentComponent, canActivate: [AuthGuard]},
   {path: "login", component: LoginComponent},
   {path: "logout", component: LogoutComponent},
-  {path: "", redirectTo: "dashboard", pathMatch: 'full'},
-  {path: "dashboard", component: DashboardComponent, pathMatch: 'full'},
-  {path: "maintenance", component: MaintenanceComponent, pathMatch: 'full'},
-  {path: 'apartments', component: ApartmentsComponent},
-  {path: 'residents', component: ResidentsComponent},
-  {path: 'residents/:id', component: ResidentDetailsComponent},
-  {path: 'apartments/:id', component: ApartmentDetailsComponent},
-  {path: 'visitors', component: VisitorsComponent},
-  {path: 'visitors/:id', component: VisitorsDetailsComponent},
-  {path: 'apartments', component: ApartmentsComponent},
-  {path: 'residents', component: ResidentsComponent},
-  {path: 'residents/:id', component: ResidentDetailsComponent},
-  {path: 'apartments/:id', component: ApartmentDetailsComponent},
-  {path: "dashboard", component: DashboardComponent},
-  {path: "maintenance", component: MaintenanceComponent},
-  {path: "new", component: AddMaintenanceComponent},
-  {path: "account", component: AccountComponent},
-  {path: 'new-apartment', component: AddApartmentComponent},
-  {path: 'new-resident', component: AddResidentComponent},
+  {path: "new", component: AddMaintenanceComponent, canActivate: [AuthGuard]},
+
 ];
 
 @NgModule({
