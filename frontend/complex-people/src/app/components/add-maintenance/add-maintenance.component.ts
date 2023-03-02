@@ -30,7 +30,7 @@ export class AddMaintenanceComponent {
         next: value => {
           let elementById = document.getElementById('form_error')!;
           elementById.innerText = "Saved contents";
-          this.router.navigate(['/maintenance']);
+          this.router.navigateByUrl('/maintenance');
 
         },
         error: err => {
