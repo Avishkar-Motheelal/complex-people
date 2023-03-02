@@ -1,7 +1,5 @@
 import {Component, NgZone, OnInit} from '@angular/core';
 import {CredentialResponse, PromptMomentNotification} from "google-one-tap";
-import {Component, OnInit} from '@angular/core';
-import {CredentialResponse} from "google-one-tap";
 import {environment} from "../../environments/environment";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -59,8 +57,6 @@ export class LoginComponent implements OnInit {
   }
 
   async handleCredentialResponse(response: CredentialResponse) {
-    this.accountService.LoginWithGoogle(response.credential).subscribe(
-      (response: HttpResponse<any>) => {
     this.accountService.LoginWithGoogle(response.credential).subscribe({
       next: (response: HttpResponse<any>) => {
         console.log(response);
@@ -70,11 +66,11 @@ export class LoginComponent implements OnInit {
 
         if (responseCode === 200) {
           this.ngZone.run(() => {
-            this.router.navigate(['/dashboard']);
+            this.router.navigateByUrl('/dashboard');
           });
         } else if (responseCode === 201) {
           this.ngZone.run(() => {
-            this.router.navigate(['/account/details']);
+            this.router.navigateByUrl('/account/details');
           });
         }
       }, error: (error: any) => {

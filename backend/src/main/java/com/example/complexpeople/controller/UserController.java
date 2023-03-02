@@ -45,7 +45,6 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<?> register(@Valid @RequestBody NewUserDTO newUserDTO) {
-        System.out.println(newUserDTO);
         User user = userService.createUser(newUserDTO.getEmail(), newUserDTO.getPassword());
         return new ResponseEntity<>(new JwtResponse(user.getEmail(), jwtTokenUtil.generateToken(new SecurityUserDetails(user))), HttpStatus.CREATED);
     }
