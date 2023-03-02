@@ -18,7 +18,7 @@ import {HttpResponse} from "@angular/common/http";
   styleUrls: ['./resident-details.component.css']
 })
 export class ResidentDetailsComponent {
-  // @Input() person?: Person;
+  @Input() person?: Person;
   @Input() cards?: AccessCard[];
 
   constructor(
@@ -32,7 +32,6 @@ export class ResidentDetailsComponent {
   ) {
   }
 
-  person?: Person;
   form!: FormGroup;
   loading = false;
   submitted = false;
@@ -65,7 +64,6 @@ export class ResidentDetailsComponent {
   }
 
   getPerson(): Observable<Person> {
-
     return this.peopleService.getPerson(this.id)
     // .subscribe(person => this.person = person);
   }

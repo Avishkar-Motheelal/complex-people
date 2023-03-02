@@ -11,22 +11,21 @@ import {ResidentsComponent} from './components/residents/residents.component';
 import {ApartmentDetailsComponent} from './components/apartment-details/apartment-details.component';
 import {ResidentDetailsComponent} from './components/resident-details/resident-details.component';
 import {FormsModule} from "@angular/forms";
-import { VisitorsComponent } from './components/visitors/visitors.component';
-import { VisitorsDetailsComponent } from './components/visitors-details/visitors-details.component';
-import { AddApartmentComponent } from './components/add-apartment/add-apartment.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { AddResidentComponent } from './components/add-resident/add-resident.component';
+import {VisitorsComponent} from './components/visitors/visitors.component';
+import {VisitorsDetailsComponent} from './components/visitors-details/visitors-details.component';
+import {AddApartmentComponent} from './components/add-apartment/add-apartment.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {AddResidentComponent} from './components/add-resident/add-resident.component';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {ReactiveFormsModule} from "@angular/forms";
 import {AlertComponent} from './alert/alert.component';
 import {RegisterComponent} from './login/register.component';
 import {AccountDetailsComponent} from './account-details/account-details.component';
 import {ErrorInterceptor, JwtInterceptor} from "./_helpers";
-import { LogoutComponent } from './components/logout/logout.component';
+import {LogoutComponent} from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +64,7 @@ import { LogoutComponent } from './components/logout/logout.component';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    // {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}, //TODO enable after debugging
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}, //TODO enable after debugging
   ],
   bootstrap: [AppComponent]
 })

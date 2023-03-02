@@ -3,9 +3,9 @@ import {HttpClient} from '@angular/common/http';
 import {map, Observable} from "rxjs";
 import {Person} from "../models/person.model";
 import {environment} from "../../environments/environment";
+import {AddPerson} from "../models/addPerson";
 import {PersonHelper} from "../helper/person-helper";
 import {NewResidentDto} from "../models/new-resident-dto.model";
-import {AddPerson} from "../models/addPerson";
 
 @Injectable({
   providedIn: 'root'
@@ -34,24 +34,11 @@ export class PeopleService {
     )
   };
 
-  updatePerson(person: AddPerson, id: number) {
-    return this.http.patch(`${environment.apiUrl}/people/${id}`, person, {observe: 'response'});
-  }
-
-  public static createPerson(person: any): Person {
-    return new class implements Person {
-      emailAddress: string = person.contactDetail.emailAddress;
-      firstName: string = person.firstName;
-      identificationDocumentNumber: string = person.identificationDocument.number;
-      identificationDocumentType: string = person.identificationDocument.documentType.type;
-      lastName: string = person.lastName;
-      peopleId: number = person.peopleId;
-      phoneNumber: string = person.contactDetail.phoneNumber;
-      roles: string[] = person.roles.map((role: { type: any; }) => role.type);
-    }
-  }
-
   addNewPerson(newResidentDto: NewResidentDto) {
     return this.http.post(this.peopleUrl, newResidentDto);
+  }
+
+  updatePerson(person: AddPerson, id: number) {
+    return this.http.patch(`${environment.apiUrl}/people/${id}`, person, {observe: 'response'});
   }
 }
