@@ -66,8 +66,8 @@
     <section class="card" *ngFor="let card of cards">
       <p><em>UUID:</em> {{card.accessCardId}}</p>
       <p><em>Status:</em> {{card.activated === true ? "Activated" : "Disabled"}}</p>
-      <button>Deactivate Card</button>
+      <button (click)="disableCard(card.accessCardId)">Deactivate Card</button>
     </section>
-    <button>Add new Card</button>
+    <button (click)="addCard()" type="button">Add new Card</button>
   </section>
 </article>

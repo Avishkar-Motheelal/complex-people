@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.UUID;
 
 public interface AccessCardRepository extends JpaRepository<AccessCard, UUID> {
-//    List<AccessCard> findByUserUserId(int userId);
+    List<AccessCard> findByPersonPeopleId(int userId);
 }

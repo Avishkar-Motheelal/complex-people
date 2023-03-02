@@ -8,7 +8,7 @@ import {CardsService} from "../../services/cards.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../../services/account.service";
 import {AlertService} from "../../services/alert.service";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {first} from "rxjs/operators";
 import {HttpResponse} from "@angular/common/http";
 
@@ -105,21 +105,29 @@ export class ResidentDetailsComponent {
   }
 
   getCards() {
-    this.cards = [
-      {
-        accessCardId: '37d88e22-8f42-4f01-a37d-671a7086f454',
-        activated: false,
-      },
-      {
-        accessCardId: 'a4b63a63-79ec-4c19-9124-cfda4d4c0a4b',
-        activated: true,
-      },
-    ];
+    // this.cards = [
+    //   {
+    //     accessCardId: '37d88e22-8f42-4f01-a37d-671a7086f454',
+    //     activated: false,
+    //   },
+    //   {
+    //     accessCardId: 'a4b63a63-79ec-4c19-9124-cfda4d4c0a4b',
+    //     activated: true,
+    //   },
+    // ]; TODO remove dummy
 
     // for actual push
-    const id = this.route.snapshot.paramMap.get('id');
-    this.cardsService.getCardForPerson(id);
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.cardsService.getCardForPerson(id).subscribe(cards => this.cards = cards);
   }
 
+  addCard() {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.cardsService.addCardForPerson(id).subscribe(_ => location.reload());
+  }
+
+  disableCard(cardId: String) {
+    this.cardsService.disableCard(cardId).subscribe(_ => location.reload());
+  }
 
 }
