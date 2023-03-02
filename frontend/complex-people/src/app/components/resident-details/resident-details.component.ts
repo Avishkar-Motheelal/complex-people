@@ -65,11 +65,12 @@ export class ResidentDetailsComponent {
 
   getPerson(): Observable<Person> {
     return this.peopleService.getPerson(this.id)
-    // .subscribe(person => this.person = person);
   }
 
   loadPerson() {
-    return this.peopleService.getPerson(this.id).subscribe(person => this.person = person);
+    this.peopleService.getPerson(this.id).subscribe(person => {
+      this.person = person
+    });
   }
 
   onSubmit() {
@@ -105,18 +106,6 @@ export class ResidentDetailsComponent {
   }
 
   getCards() {
-    // this.cards = [
-    //   {
-    //     accessCardId: '37d88e22-8f42-4f01-a37d-671a7086f454',
-    //     activated: false,
-    //   },
-    //   {
-    //     accessCardId: 'a4b63a63-79ec-4c19-9124-cfda4d4c0a4b',
-    //     activated: true,
-    //   },
-    // ]; TODO remove dummy
-
-    // for actual push
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.cardsService.getCardForPerson(id).subscribe(cards => this.cards = cards);
   }
@@ -129,5 +118,6 @@ export class ResidentDetailsComponent {
   disableCard(cardId: String) {
     this.cardsService.disableCard(cardId).subscribe(_ => location.reload());
   }
+
 
 }
