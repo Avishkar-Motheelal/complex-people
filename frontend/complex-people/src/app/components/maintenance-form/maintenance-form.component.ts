@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {IssuesModel} from "../../models/issues_model";
-import {TheserviceService} from "../../services/theservice.service";
+import {HidecomponentService} from "../../services/hidecomponent.service";
 import {IssuesService} from "../../services/issues.service";
 
 @Component({
@@ -17,7 +17,7 @@ export class MaintenanceFormComponent {
     this.formHidden = true;
   }
 
-  constructor(private sharedService: TheserviceService, private issueService: IssuesService) {
+  constructor(private sharedService: HidecomponentService, private issueService: IssuesService) {
     this.issue$ = new IssuesModel("", 0, "", "", new Date(), "", "");
     this.sharedService.myMethod$.subscribe((data) => {
       this.formHidden = data;

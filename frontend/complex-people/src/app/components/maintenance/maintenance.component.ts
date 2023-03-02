@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {IssuesModel} from "../../models/issues_model";
 import {IssuesService} from "../../services/issues.service";
-import {TheserviceService} from "../../services/theservice.service";
+import {HidecomponentService} from "../../services/hidecomponent.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -14,7 +14,7 @@ export class MaintenanceComponent {
 
   formHidden: boolean = true;
 
-  constructor(private issueService: IssuesService, private sharedService: TheserviceService, private router: Router) {
+  constructor(private issueService: IssuesService, private sharedService: HidecomponentService, private router: Router) {
     this.sharedService.myMethod$.subscribe(
       (data) => {this.formHidden = data}
     )

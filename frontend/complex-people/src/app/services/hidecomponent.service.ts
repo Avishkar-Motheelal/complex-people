@@ -5,7 +5,7 @@ import {IssuesModel} from "../models/issues_model";
 @Injectable({
   providedIn: 'root'
 })
-export class TheserviceService {
+export class HidecomponentService {
 
   myMethod$: Observable<any>;
   private myMethodSubject = new Subject<any>();

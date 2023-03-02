@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TheserviceService } from './theservice.service';
+import { HidecomponentService } from './hidecomponent.service';
 
 describe('TheserviceService', () => {
-  let service: TheserviceService;
+  let service: HidecomponentService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TheserviceService);
+    service = TestBed.inject(HidecomponentService);
   });
 
   it('should be created', () => {
