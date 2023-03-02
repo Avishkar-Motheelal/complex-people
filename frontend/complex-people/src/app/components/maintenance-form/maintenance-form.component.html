@@ -1,6 +1,6 @@
 <form class="forms">
   <label for="unit">Unit/Apartment No</label>
-  <input name="unit" id="unit" type="text" disabled>
+  <input name="unit" id="unit" type="text"  disabled>
 
   <label for="description" ></label>
   <input name="description" id="description" type="text" [(ngModel)]="issue$.description" disabled>
@@ -12,7 +12,7 @@
   </select>
 
   <label for="type" >Type</label>
-  <select id="type" name="type" disabled>
+  <select id="type" name="type" disabled [value]="issue$.complaintType.complaintTypesId">
     <option value="1">Maintenance</option>
     <option value="2">Complaint</option>
   </select>

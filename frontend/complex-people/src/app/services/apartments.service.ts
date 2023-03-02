@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Apartment } from "../models/apartment.model";
-import {map, Observable} from "rxjs";
-import {environment} from "../../environments/environment";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Apartment} from "../models/apartment.model";
+import {Observable} from "rxjs";
+import {environment} from "../environments/environment";
+
+// import {environment} from "../../environments/environment.ts";
 
 
 @Injectable({
@@ -12,7 +14,8 @@ export class ApartmentsService {
 
   private apartmentUrl = `${environment.apiUrl}/apartments`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   getApartments(): Observable<Apartment[]> {
     return this.http.get<Apartment[]>(this.apartmentUrl);

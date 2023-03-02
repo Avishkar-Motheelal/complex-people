@@ -9,15 +9,16 @@ import {ApartmentDetailsComponent} from "./components/apartment-details/apartmen
 import {VisitorsComponent} from "./components/visitors/visitors.component";
 import {VisitorsDetailsComponent} from "./components/visitors-details/visitors-details.component";
 import {AccountComponent} from "./components/account/account.component";
+import {AddMaintenanceComponent} from "./components/add-maintenance/add-maintenance.component";
 
 const routes: Routes = [
   {path: "", redirectTo: "dashboard", pathMatch: 'full'},
   {path: "dashboard", component: DashboardComponent, pathMatch: 'full'},
   {path: "maintenance", component: MaintenanceComponent, pathMatch: 'full'},
-  { path: 'apartments', component: ApartmentsComponent },
-  { path: 'residents', component: ResidentsComponent },
-  { path: 'residents/:id', component: ResidentDetailsComponent},
-  { path: 'apartments/:id', component: ApartmentDetailsComponent},
+  {path: 'apartments', component: ApartmentsComponent},
+  {path: 'residents', component: ResidentsComponent},
+  {path: 'residents/:id', component: ResidentDetailsComponent},
+  {path: 'apartments/:id', component: ApartmentDetailsComponent},
   {path: 'visitors', component: VisitorsComponent},
   {path: 'visitors/:id', component: VisitorsDetailsComponent},
   {path: 'apartments', component: ApartmentsComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'apartments/:id', component: ApartmentDetailsComponent},
   {path: "dashboard", component: DashboardComponent},
   {path: "maintenance", component: MaintenanceComponent},
+  {path: "new", component: AddMaintenanceComponent},
   {path: "account", component: AccountComponent}
 ];
 
@@ -33,4 +35,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

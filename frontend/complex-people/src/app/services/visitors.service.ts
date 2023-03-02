@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../../environments/environment";
 import {map} from "rxjs";
 import {Visit} from "../models/visit.model";
 import {Person} from "../models/person.model";
 import {PersonHelper} from "../helper/person-helper";
 import {Apartment} from "../models/apartment.model";
+import {environment} from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'

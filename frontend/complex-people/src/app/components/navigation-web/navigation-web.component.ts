@@ -7,4 +7,17 @@ import { Component } from '@angular/core';
 })
 export class NavigationWebComponent {
 
+
+  changeActiveElement(event: any) {
+    let target = event.target as HTMLElement;
+    let elementsByTagName = document.getElementsByTagName('a');
+    // @ts-ignore
+    for (const elementsByTagNameElement of elementsByTagName) {
+      elementsByTagNameElement.className = " ";
+    }
+
+    target.className = "active";
+
+  }
+
 }

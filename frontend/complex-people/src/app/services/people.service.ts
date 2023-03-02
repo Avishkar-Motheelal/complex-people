@@ -2,14 +2,15 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map, Observable} from "rxjs";
 import {Person} from "../models/person.model";
-import {environment} from "../../environments/environment";
+import {environment} from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PeopleService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   private peopleUrl = `${environment.apiUrl}/people`;
 
@@ -19,7 +20,7 @@ export class PeopleService {
         return PeopleService.createPerson(person);
       })),
     );
-}
+  }
 
   getPerson(id: number) {
     const personUrl = `${this.peopleUrl}/${id}`;

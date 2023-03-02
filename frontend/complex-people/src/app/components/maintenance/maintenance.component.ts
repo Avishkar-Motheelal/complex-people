@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {IssuesModel} from "../../models/issues_model";
 import {IssuesService} from "../../services/issues.service";
 import {TheserviceService} from "../../services/theservice.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-maintenance',
@@ -13,16 +14,19 @@ export class MaintenanceComponent {
 
   formHidden: boolean = true;
 
-  constructor(private issueService: IssuesService, private sharedService: TheserviceService) {
+  constructor(private issueService: IssuesService, private sharedService: TheserviceService, private router: Router) {
     this.sharedService.myMethod$.subscribe(
       (data) => {this.formHidden = data}
     )
 
   }
 
-
   ngOnInit() {
     this.getAllIssues();
+  }
+
+  goToForm() {
+    this.router.navigate(['/new']);
   }
 
   updateForm(event: any, issue: IssuesModel) {

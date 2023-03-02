@@ -12,8 +12,6 @@ export class MaintenanceFormComponent {
   formHidden: boolean | undefined;
   issue$: IssuesModel;
 
-
-
   cancelButton() {
     this.formHidden = true;
   }
