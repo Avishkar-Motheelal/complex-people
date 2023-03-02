@@ -55,18 +55,14 @@
         </div>
       </fieldset>
 
-      <div>
-        <button [disabled]="loading">
-          Save Changes
-        </button>
-      </div>
     </form>
-
-    <button>Save Changes</button>
+    <button [disabled]="loading">
+      Save Changes
+    </button>
   </section>
 
   <section>
-    <h2>Access Cards Registered for {{person.firstName}}</h2>
+    <h2>Access Cards Registered for {{person?.firstName}}</h2>
     <section class="card" *ngFor="let card of cards">
       <p><em>UUID:</em> {{card.accessCardId}}</p>
       <p><em>Status:</em> {{card.activated === true ? "Activated" : "Disabled"}}</p>
