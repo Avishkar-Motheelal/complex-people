@@ -14,7 +14,7 @@
 
     <section class="dash_card">
       <p class="card_title">Tickets Received</p>
-      <p id="ticket_count" class="card_content">{{}}</p>
+      <p id="ticket_count" class="card_content">{{requestsNumber}}</p>
     </section>
 
     <section class="dash_card">
@@ -46,7 +46,7 @@
   <tbody>
   <tr *ngFor="let visit of visitors">
     <td hidden>{{visit.visitorId}}</td>
-    <td><img src="{{visit.photo.photoUrl}}" loading="lazy"> </td>
+    <td><img src="{{visit.photo.photoUrl}}" loading="lazy" alt="Profile Photo"> </td>
     <td>{{visit.visitor.firstName}}</td>
     <td>{{visit.visitor.lastName}}</td>
     <td>{{visit.apartment.unitNumber}}</td>
