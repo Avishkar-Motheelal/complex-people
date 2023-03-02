@@ -34,7 +34,7 @@ button {
   display: inline-block;
   margin-right: 20px;
   margin-bottom: 20px;
-  cursor: pointer;
+  /*cursor: pointer;*/
   /*grid-auto-columns: auto;*/
 }
 

@@ -48,7 +48,7 @@ export class ResidentDetailsComponent {
           phoneNumber: [person.phoneNumber, Validators.required],
           email: [person.emailAddress, Validators.required],
           type: [person.identificationDocumentType, Validators.required],
-          number: [person.phoneNumber, Validators.required],
+          number: [person.identificationDocumentNumber, Validators.required],
           role: ['RESIDENT'],
         });
       },
