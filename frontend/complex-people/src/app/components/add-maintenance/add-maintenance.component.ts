@@ -13,7 +13,7 @@ import {Router} from "@angular/router";
 export class AddMaintenanceComponent {
   maintenanceForm;
 
-  issue: IssueHelper = new IssueHelper(0, '', '');
+  issue: IssueHelper = new IssueHelper(1, '', '');
 
   constructor(private formBuilder: FormBuilder, private issueService: IssuesService,  private router: Router) {
     this.maintenanceForm = this.formBuilder.group({
