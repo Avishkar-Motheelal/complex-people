@@ -1,0 +1,23 @@
+form {
+
+}
+
+input {
+  display: flex;
+}
+
+button {
+  margin-top: 15px;
+}
+
+p {
+  color: red;
+}
+
+input[type=radio] {
+  display: inline-block;
+}
+
+button {
+  display: block;
+}

@@ -8,6 +8,8 @@ import {ResidentDetailsComponent} from "./components/resident-details/resident-d
 import {ApartmentDetailsComponent} from "./components/apartment-details/apartment-details.component";
 import {VisitorsComponent} from "./components/visitors/visitors.component";
 import {VisitorsDetailsComponent} from "./components/visitors-details/visitors-details.component";
+import {AddApartmentComponent} from "./components/add-apartment/add-apartment.component";
+import {AddResidentComponent} from "./components/add-resident/add-resident.component";
 import {AccountComponent} from "./components/account/account.component";
 import {AddMaintenanceComponent} from "./components/add-maintenance/add-maintenance.component";
 
@@ -29,11 +31,12 @@ const routes: Routes = [
   {path: "maintenance", component: MaintenanceComponent},
   {path: "new", component: AddMaintenanceComponent},
   {path: "account", component: AccountComponent}
+  {path: 'new-apartment', component: AddApartmentComponent},
+  {path: 'new-resident', component: AddResidentComponent},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }
