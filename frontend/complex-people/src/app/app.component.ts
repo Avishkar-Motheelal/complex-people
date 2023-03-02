@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'complex-people';
+
+  hidden: boolean = false;
+
+  ngInit() {
+
+    if (!localStorage.getItem('user')) {
+      this.hidden =true;
+    }
+
+  }
+
 }

@@ -16,9 +16,11 @@ import {AddApartmentComponent} from "./components/add-apartment/add-apartment.co
 import {AddResidentComponent} from "./components/add-resident/add-resident.component";
 import {AddMaintenanceComponent} from "./components/add-maintenance/add-maintenance.component";
 import {LogoutComponent} from "./components/logout/logout.component";
+import {NavigationWebComponent} from "./components/navigation-web/navigation-web.component";
 
 const routes: Routes = [
   {path: "", redirectTo: "login", pathMatch: 'full'},
+  {path: "home", component: NavigationWebComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   {path: "dashboard", component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   {path: "maintenance", component: MaintenanceComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   {path: 'apartments', component: ApartmentsComponent, canActivate: [AuthGuard]},

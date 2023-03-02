@@ -65,13 +65,13 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("user", JSON.stringify(user));
 
         if (responseCode === 200) {
-          this.ngZone.run(() => {
+          // this.ngZone.run(() => {
             this.router.navigateByUrl('/dashboard');
-          });
+          // });
         } else if (responseCode === 201) {
-          this.ngZone.run(() => {
+          // this.ngZone.run(() => {
             this.router.navigateByUrl('/account/details');
-          });
+          // });
         }
       }, error: (error: any) => {
         this.alertService.error(error);
