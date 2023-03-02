@@ -18,12 +18,13 @@
     <label for="idNum">Identification Number:</label>
     <input type="text" id="idNum" formControlName="identificationNumber" required>
 
+
+    <label>Identification Type</label>
     <input type="radio" value="ID" formControlName="identificationType" name="identificationType" required>ID
     <input type="radio" value="PASSPORT" formControlName="identificationType" name="identificationType">PASSPORT
 
 
-
-    <button type="submit">Save</button>
+    <button type="submit" >Save</button>
   </form>
 
   <p *ngIf="errorMessage">{{ errorMessage }}</p>

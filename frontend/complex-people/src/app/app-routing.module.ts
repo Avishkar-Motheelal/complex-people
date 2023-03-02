@@ -30,7 +30,7 @@ const routes: Routes = [
   {path: "dashboard", component: DashboardComponent},
   {path: "maintenance", component: MaintenanceComponent},
   {path: "new", component: AddMaintenanceComponent},
-  {path: "account", component: AccountComponent}
+  {path: "account", component: AccountComponent},
   {path: 'new-apartment', component: AddApartmentComponent},
   {path: 'new-resident', component: AddResidentComponent},
 ];
@@ -39,4 +39,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

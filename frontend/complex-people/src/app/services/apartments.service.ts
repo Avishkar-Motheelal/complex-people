@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Apartment } from "../models/apartment.model";
 import {map, Observable} from "rxjs";
 import {environment} from "../../environments/environment";
+import {ApartmentHelper} from "../helper/apartment-helper";
+import {NewApartmentDto} from "../models/new-apartment-dto.model";
 
 
 @Injectable({
