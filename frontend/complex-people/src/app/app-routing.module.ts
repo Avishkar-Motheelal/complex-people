@@ -14,7 +14,6 @@ import {VisitorsComponent} from "./components/visitors/visitors.component";
 import {VisitorsDetailsComponent} from "./components/visitors-details/visitors-details.component";
 import {AddApartmentComponent} from "./components/add-apartment/add-apartment.component";
 import {AddResidentComponent} from "./components/add-resident/add-resident.component";
-import {AccountComponent} from "./components/account/account.component";
 import {AddMaintenanceComponent} from "./components/add-maintenance/add-maintenance.component";
 import {LogoutComponent} from "./components/logout/logout.component";
 
@@ -42,4 +41,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
