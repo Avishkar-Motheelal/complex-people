@@ -23,9 +23,6 @@ public class User {
     private Person person;
     private String password;
     private boolean enabled;
-    @Enumerated(EnumType.STRING)
-    private Provider provider;
-    private String providerId;
 
 
     @Transient

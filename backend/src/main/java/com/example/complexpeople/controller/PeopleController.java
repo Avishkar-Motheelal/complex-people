@@ -46,7 +46,6 @@ public class PeopleController {
 
     @PatchMapping("/{id}")
     public Person updatePerson(@PathVariable Integer id, @RequestBody UpdateUserPersonDTO updateUserPersonDTO) throws PersonNotFoundException, PersonExistsException {
-        System.out.println(updateUserPersonDTO);
         UpdatePersonDTO updatePersonDTO = updateUserPersonDTO.toUpdatePersonDTO();
         return peopleService.updatePerson(id, updatePersonDTO);
     }

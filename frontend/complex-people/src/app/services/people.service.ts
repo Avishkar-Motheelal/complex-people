@@ -42,4 +42,3 @@ export class PeopleService {
     return this.http.patch(`${environment.apiUrl}/people/${id}`, person, {observe: 'response'});
   }
 }
-

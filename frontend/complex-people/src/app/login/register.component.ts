@@ -4,9 +4,16 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {first} from 'rxjs/operators';
 import {AlertService} from "../services/alert.service";
 import {AccountService} from "../services/account.service";
+import {HttpResponse} from "@angular/common/http";
+import {User} from "../models/user";
 
 
-@Component({templateUrl: 'register.component.html'})
+@Component({
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.css']
+  }
+)
 export class RegisterComponent implements OnInit {
   form!: FormGroup;
   loading = false;
@@ -48,12 +55,14 @@ export class RegisterComponent implements OnInit {
     this.accountService.register(this.form.value)
       .pipe(first())
       .subscribe({
-        next: () => {
+        next: (response: HttpResponse<any>) => {
+          let user: User = response.body;
+          localStorage.setItem("user", JSON.stringify(user));
           this.alertService.success('Registration successful', {keepAfterRouteChange: true});
-          this.router.navigate(['../login'], {relativeTo: this.route});
+          this.router.navigateByUrl('account/details');
         },
         error: error => {
-          this.alertService.error(error);
+          this.alertService.error("Failed to register an account");
           this.loading = false;
         }
       });

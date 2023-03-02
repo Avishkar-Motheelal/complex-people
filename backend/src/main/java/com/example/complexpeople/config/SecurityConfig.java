@@ -59,7 +59,6 @@ public class SecurityConfig {
             .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class)
             .authorizeHttpRequests()
             .requestMatchers(HttpMethod.POST, "/authenticate").permitAll()
-//            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
             .requestMatchers("/v3/api-docs/**",
                 "/swagger-ui/**",
                 "/swagger-ui.html",
@@ -67,13 +66,10 @@ public class SecurityConfig {
                 "/swagger",
                 "/docs",
                 "/users/**",
-                "/**",
                 "/apartments",
                 "/people/**",
-                "/login/oauth2/code/google").permitAll()
-//            .requestMatchers("/**").hasRole("STAFF")
-//            .requestMatchers("/access/authorization").hasAnyRole("ADMIN", "READER")
-            .anyRequest().authenticated()
+                "/**",
+                "/login/oauth2/code/google").permitAll().anyRequest().authenticated()
             .and()
             .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
             .and()
@@ -84,20 +80,4 @@ public class SecurityConfig {
             .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
-//    @Bean
-//    public InMemoryUserDetailsManager userDetailsService() {
-//        UserDetails user = User
-//            .withUsername("admin")
-//            .password(passwordEncoder().encode("password"))
-//            .roles("ADMIN")
-//            .build();
-//
-//        UserDetails cardReader = User
-//            .withUsername("cardReader")
-//            .password(passwordEncoder().encode("password"))
-//            .roles("READER")
-//            .build();
-//        return new InMemoryUserDetailsManager(user, cardReader);
-//    }
 }

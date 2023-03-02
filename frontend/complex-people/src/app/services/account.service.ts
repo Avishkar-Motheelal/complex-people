@@ -47,7 +47,7 @@ export class AccountService {
   }
 
   register(user: User) {
-    return this.http.post(`${environment.apiUrl}/users`, user);
+    return this.http.post<HttpResponse<any>>(`${environment.apiUrl}/users`, user, {observe: 'response'});
   }
 
   // getAll() {

@@ -5,7 +5,6 @@ import com.example.complexpeople.dto.NewUserDTO;
 import com.example.complexpeople.dto.UpdateUserPersonDTO;
 import com.example.complexpeople.exception.PersonExistsException;
 import com.example.complexpeople.model.Person;
-import com.example.complexpeople.model.Provider;
 import com.example.complexpeople.model.User;
 import com.example.complexpeople.repository.UserRepository;
 import com.example.complexpeople.security.SecurityUserDetails;
@@ -17,18 +16,13 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/users")
 public class UserController {
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
     private final PeopleService peopleService;
     private final JwtTokenUtil jwtTokenUtil;
     private final UserService userService;
@@ -51,7 +45,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<?> register(@Valid @RequestBody NewUserDTO newUserDTO) {
-        User user = userService.createUser(newUserDTO.getEmail(), newUserDTO.getPassword(), Provider.LOCAL);
+        User user = userService.createUser(newUserDTO.getEmail(), newUserDTO.getPassword());
         return new ResponseEntity<>(new JwtResponse(user.getEmail(), jwtTokenUtil.generateToken(new SecurityUserDetails(user))), HttpStatus.CREATED);
     }
 

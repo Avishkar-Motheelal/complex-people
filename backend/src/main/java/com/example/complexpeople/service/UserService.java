@@ -2,7 +2,6 @@ package com.example.complexpeople.service;
 
 import com.example.complexpeople.exception.UserExistsException;
 import com.example.complexpeople.exception.ValidationException;
-import com.example.complexpeople.model.Provider;
 import com.example.complexpeople.model.User;
 import com.example.complexpeople.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,17 +27,16 @@ public class UserService {
 
     private User createUser(String email) {
         String password = "hyuiahrulghagh89347y982ig"; //TODO generate random password
-        return createUser(email, password, Provider.GOOGLE);
+        return createUser(email, password);
     }
 
 
-    public User createUser(String email, String password, Provider provider) {
+    public User createUser(String email, String password) {
         if (userRepository.existsByEmail(email)) {
             throw new UserExistsException("User already exists with that email");
         }
         User user = new User();
         user.setEnabled(true);
-        user.setProvider(provider);
         user.setEmail(email);
         user.setPassword(passwordEncoder.encode(password));
 

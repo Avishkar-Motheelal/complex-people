@@ -64,7 +64,7 @@ import {LogoutComponent} from './components/logout/logout.component';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    // {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}, //TODO enable after debugging
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}, //TODO enable after debugging
   ],
   bootstrap: [AppComponent]
 })

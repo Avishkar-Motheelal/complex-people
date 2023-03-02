@@ -48,11 +48,11 @@ export class LoginComponent implements OnInit {
       google.accounts.id.renderButton(
         // @ts-ignore
         document.getElementById("buttonDiv"),
-        {theme: "outline", size: "large", width: "100%"}
+        {theme: "outline", size: "large", width: "50%"}
       );
       // @ts-ignore
-      google.accounts.id.prompt((notification: PromptMomentNotification) => {
-      });
+      // google.accounts.id.prompt((notification: PromptMomentNotification) => {
+      // });
     };
   }
 
@@ -66,11 +66,11 @@ export class LoginComponent implements OnInit {
 
         if (responseCode === 200) {
           this.ngZone.run(() => {
-            this.router.navigate(['/dashboard']);
+            this.router.navigateByUrl('/dashboard');
           });
         } else if (responseCode === 201) {
           this.ngZone.run(() => {
-            this.router.navigate(['/account/details']);
+            this.router.navigateByUrl('/account/details');
           });
         }
       }, error: (error: any) => {
@@ -103,37 +103,9 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl(returnUrl);
         },
         error: error => {
-          this.alertService.error(error);
+          this.alertService.error("Login Failed. Email or password incorrect");
           this.loading = false;
         }
       });
   }
-
-  // async handleCredentialResponse(response: CredentialResponse) {
-  //   await this.accountService.LoginWithGoogle(response.credential).subscribe(
-  //     (x:any) => {
-  //       console.log(x);
-  //       localStorage.setItem("token", x.jwttoken);
-  //       // this._ngZone.run(() => {
-  //       //   this.router.navigate(['/logout']);
-  //       // })
-  //       },
-  //     (error:any) => {
-  //       console.log(error);
-  //     }
-  //   );
-  // }
-  // get formControls() { // @ts-ignore
-  //   return this.authForm.controls; }
-  //
-  // onSubmit(){
-  //   this.isSubmitted = true;
-  //   // @ts-ignore
-  //   if(this.authForm.invalid){
-  //     return;
-  //   }
-  //   // @ts-ignore
-  //   this.authService.signIn(this.authForm.value);
-  //   // this.router.navigateByUrl('/admin');
-  // }
 }
