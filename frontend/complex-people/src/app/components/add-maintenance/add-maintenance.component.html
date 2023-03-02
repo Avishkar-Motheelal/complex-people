@@ -1,11 +1,11 @@
 <h2>Add New Maintenance Request</h2>
 
-<form class="forms"  #maintenanceForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+<form class="forms"  #maintenanceForm="ngForm">
   <p id="form_error"></p>
 
   <label for="unit">Unit/Apartment No</label>
-  <input name="unit" id="unit" type="text" [(ngModel)]="issue.apartmentNo" #unit="ngModel" required>
-  <p [hidden]="unit.valid || unit.pristine" class="form_error">Unit number is required</p>
+  <input name="unit" id="unit" type="number" min="1" max="2,147,483,647" [(ngModel)]="issue.apartmentNo" #unit="ngModel" required>
+<!--  <p [hidden]="unit.valid || unit.pristine" class="form_error">Unit number is required</p>-->
 
   <label for="description" >Description</label>
   <input name="description" id="description" required type="text" [(ngModel)]="issue.description" #description="ngModel" >
