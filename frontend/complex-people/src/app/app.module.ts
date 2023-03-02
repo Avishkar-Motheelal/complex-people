@@ -1,10 +1,12 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-import {DashboardComponent} from './components/dashboard/dashboard.component';
-import {MaintenanceComponent} from './components/maintenance/maintenance.component';
-import {TenantRequestsComponent} from './components/tenant-requests/tenant-requests.component';
-import {NavigationWebComponent} from './components/navigation-web/navigation-web.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { MaintenanceComponent } from './components/maintenance/maintenance.component';
+import { TenantRequestsComponent } from './components/tenant-requests/tenant-requests.component';
+import { NavigationWebComponent } from './components/navigation-web/navigation-web.component';
 
 import {ApartmentsComponent} from './components/apartments/apartments.component';
 import {ResidentsComponent} from './components/residents/residents.component';
@@ -17,8 +19,6 @@ import {AddApartmentComponent} from './components/add-apartment/add-apartment.co
 import {ReactiveFormsModule} from '@angular/forms';
 import {AddResidentComponent} from './components/add-resident/add-resident.component';
 
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AlertComponent} from './alert/alert.component';
@@ -26,6 +26,8 @@ import {RegisterComponent} from './login/register.component';
 import {AccountDetailsComponent} from './account-details/account-details.component';
 import {ErrorInterceptor, JwtInterceptor} from "./_helpers";
 import {LogoutComponent} from './components/logout/logout.component';
+import {MaintenanceFormComponent} from "./components/maintenance-form/maintenance-form.component";
+import {AddMaintenanceComponent} from "./components/add-maintenance/add-maintenance.component";
 
 @NgModule({
   declarations: [
@@ -34,10 +36,12 @@ import {LogoutComponent} from './components/logout/logout.component';
     DashboardComponent,
     MaintenanceComponent,
     TenantRequestsComponent,
+    MaintenanceFormComponent,
     NavigationWebComponent,
     ApartmentsComponent,
     ResidentsComponent,
     ApartmentDetailsComponent,
+    AddMaintenanceComponent,
     ResidentDetailsComponent,
     VisitorsComponent,
     VisitorsDetailsComponent,
@@ -52,9 +56,6 @@ import {LogoutComponent} from './components/logout/logout.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     AppRoutingModule,

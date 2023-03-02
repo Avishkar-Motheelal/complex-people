@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Apartment} from "../models/apartment.model";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Apartment } from "../models/apartment.model";
 import {map, Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {ApartmentHelper} from "../helper/apartment-helper";
@@ -23,7 +23,6 @@ export class ApartmentsService {
       }))
     );
   }
-
 
   getApartment(id: number) {
     const apartmentUrl = `${this.apartmentUrl}/${id}`;

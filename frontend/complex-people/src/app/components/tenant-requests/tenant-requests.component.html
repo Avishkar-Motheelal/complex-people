@@ -1,9 +1,9 @@
 <aside>
   <section class="dash_card">
     <p class="card_title_quick">Quick Actions</p>
-    <button class="quick_act_btn">Add Tenant</button>
-    <button class="quick_act_btn">Add Visitor</button>
-    <button class="quick_act_btn">Add Apartment</button>
+    <button type="button" class="quick_act_btn" (click)="goTo('NewTenant')" >Add Tenant</button>
+    <button type="button" class="quick_act_btn" (click)="goTo('NewVisitor')" >Add Visitor</button>
+    <button type="button" class="quick_act_btn" (click)="goTo('NewApart')">Add Apartment</button>
   </section>
 
   <section class="tenant_request_section">

@@ -12,8 +12,7 @@ import {NewResidentDto} from "../models/new-resident-dto.model";
 })
 export class PeopleService {
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   private peopleUrl = `${environment.apiUrl}/people`;
 

@@ -1,0 +1,53 @@
+form {
+  position: relative;
+  background-color: white;
+  padding: 15px;
+  width: 60%;
+  border-radius: 20px;
+  top: 10px;
+}
+
+
+.form_error {
+  background-color: rgba(205, 92, 92, 0.31);
+  color: red;
+  font-size: 13pt;
+  margin: 0;
+}
+
+
+label {
+  color: gray;
+  font-size: 13pt;
+  margin-bottom: 10px;
+}
+
+input {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  height: 30px;
+  border-radius: 5px;
+  border-width: 1px;
+}
+
+legend {
+  color: #04AA6D;
+}
+
+select {
+  display: block;
+  width: 100%;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+button {
+  margin-top: 25px;
+  width: 30%;
+  display: inline-grid;
+}
+
+#save {
+  float: right;
+}

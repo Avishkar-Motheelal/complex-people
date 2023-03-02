@@ -1,20 +1,20 @@
-<section>
+<section >
 
   <section class="top_bar_cards">
 
     <section class="dash_card">
       <p class="card_title">Total Properties</p>
-      <p id="property_count" class="card_content">12</p>
+      <p id="property_count" class="card_content">{{apartmentNumber}}</p>
     </section>
 
     <section class="dash_card">
       <p class="card_title">Total Tenants</p>
-      <p id="tenant_count" class="card_content">12</p>
+      <p id="tenant_count" class="card_content">{{tenantsNumber}}</p>
     </section>
 
     <section class="dash_card">
       <p class="card_title">Tickets Received</p>
-      <p id="ticket_count" class="card_content">12</p>
+      <p id="ticket_count" class="card_content">{{requestsNumber}}</p>
     </section>
 
     <section class="dash_card">
@@ -28,3 +28,32 @@
 </section>
 
 <app-tenant-requests id="tenant_requests_comp"></app-tenant-requests>
+<section id="sectionless">
+  <h2>Recent Activity</h2>
+  <h3>Visitors</h3>
+
+  <thead>
+  <tr>
+    <th scope="col"></th>
+    <th scope="col">Visitor First Name</th>
+    <th scope="col">Visitor Last Name</th>
+    <th scope="col">Apartment Number</th>
+    <th scope="col">DateIn</th>
+    <th scope="col">DateOut</th>
+    <th scope="col">View Visitor</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let visit of visitors">
+    <td hidden>{{visit.visitorId}}</td>
+    <td><img src="{{visit.photo.photoUrl}}" loading="lazy" alt="Profile Photo"> </td>
+    <td>{{visit.visitor.firstName}}</td>
+    <td>{{visit.visitor.lastName}}</td>
+    <td>{{visit.apartment.unitNumber}}</td>
+    <td>{{visit.dateIn | date:'fullDate'}}</td>
+    <td>{{visit.dateOut | date:'fullDate'}}</td>
+    <td> <button [routerLink]="'/visitors/' + visit.visitor.peopleId">View</button></td>
+  </tr>
+  </tbody>
+
+</section>

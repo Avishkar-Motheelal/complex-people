@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../../environments/environment";
 import {map} from "rxjs";
 import {Visit} from "../models/visit.model";
 import {Person} from "../models/person.model";
 import {PersonHelper} from "../helper/person-helper";
 import {Apartment} from "../models/apartment.model";
+import {environment} from "../../environments/environment";
+import {Photo} from "../models/photo";
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class VisitorsService {
           apartment: Apartment = visit.apartment;
           dateIn: Date = visit.dateIn;
           dateOut: Date = visit.dateOut;
-          photo: URL = visit.photo.photoURL;
+          photo: Photo = visit.photo;
           visitor: Person = PersonHelper.createPerson(visit.visitor);
           visitorId = visit.visitorId
         }

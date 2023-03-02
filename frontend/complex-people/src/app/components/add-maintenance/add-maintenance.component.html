@@ -1,0 +1,23 @@
+<h2>Add New Maintenance Request</h2>
+
+<form class="forms"  #maintenanceForm="ngForm">
+  <p id="form_error"></p>
+
+  <label for="unit">Unit/Apartment No</label>
+  <input name="unit" id="unit" type="number" min="1" max="2,147,483,647" [(ngModel)]="issue.apartmentNo" #unit="ngModel" required>
+<!--  <p [hidden]="unit.valid || unit.pristine" class="form_error">Unit number is required</p>-->
+
+  <label for="description" >Description</label>
+  <input name="description" id="description" required type="text" [(ngModel)]="issue.description" #description="ngModel" >
+  <p [hidden]="description.valid || description.pristine" class="form_error">Description is required</p>
+
+  <label for="type" >Type</label>
+  <select id="type" name="type" [(ngModel)]="issue.complaintType">
+    <option value="1">Maintenance</option>
+    <option value="2">Complaint</option>
+  </select>
+
+  <button type="button" class="outline_btn" id="cancel" >Cancel</button>
+  <button type="button" class="cta" id="save" [disabled]="!maintenanceForm.valid" (click)="onSubmit()" >Save</button>
+
+</form>
