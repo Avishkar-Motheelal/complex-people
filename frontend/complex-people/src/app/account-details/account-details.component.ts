@@ -58,12 +58,12 @@ export class AccountDetailsComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: (response: HttpResponse<any>) => {
-          if (response.status !== 201) {
+          if (response.status !== 200) {
             this.alertService.error("Failed to add your details, you likely already have an account");
             this.loading = false;
           } else {
             this.alertService.success('Added your details successfully', {keepAfterRouteChange: true});
-            // this.router.navigate(["/dashboard"]);
+            this.router.navigateByUrl("/home");
           }
         },
         error: error => {

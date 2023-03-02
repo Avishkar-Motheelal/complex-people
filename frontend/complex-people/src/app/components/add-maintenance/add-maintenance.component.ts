@@ -13,7 +13,7 @@ import {Router} from "@angular/router";
 export class AddMaintenanceComponent {
   maintenanceForm;
 
-  issue: IssueHelper = new IssueHelper(0, '', '');
+  issue: IssueHelper = new IssueHelper(1, '', '');
 
   constructor(private formBuilder: FormBuilder, private issueService: IssuesService,  private router: Router) {
     this.maintenanceForm = this.formBuilder.group({
@@ -30,12 +30,11 @@ export class AddMaintenanceComponent {
         next: value => {
           let elementById = document.getElementById('form_error')!;
           elementById.innerText = "Saved contents";
-          this.router.navigate(['/maintenance']);
+          this.router.navigateByUrl('/maintenance');
 
         },
         error: err => {
           let elementById = document.getElementById('form_error')!;
-          console.log(err);
           elementById.innerText = err.error.message;
 
         }

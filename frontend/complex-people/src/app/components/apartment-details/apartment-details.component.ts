@@ -29,7 +29,7 @@ export class ApartmentDetailsComponent {
       .subscribe(apartment => {
         this.apartment = apartment;
         this.residents = apartment.people;
-        console.log(this.apartment);
+
       });
   }
 }

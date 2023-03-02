@@ -16,8 +16,8 @@
     <td>{{visit.visitor.firstName}}</td>
     <td>{{visit.visitor.lastName}}</td>
     <td>{{visit.apartment.unitNumber}}</td>
-    <td>{{visit.dateIn}}</td>
-    <td>{{visit.dateOut}}</td>
+    <td>{{visit.dateIn | date: 'fullDate'}}</td>
+    <td>{{visit.dateOut | date: 'fullDate'}}</td>
     <td> <button [routerLink]="'/visitors/' + visit.visitor.peopleId">View</button></td>
   </tr>
   </tbody>

@@ -42,10 +42,10 @@ export class MaintenanceComponent {
       {
         next: value => {
           this.issues = value;
-          console.log(this.issues);
+
         },
         error: err => {
-          console.log(err)
+
         }
       }
     )
