@@ -1,0 +1,30 @@
+<section>
+  <h2>Add a Visitor</h2>
+
+  <form [formGroup]="visitorForm" (ngSubmit)="onSubmit()">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" formControlName="firstName" required>
+
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" formControlName="lastName" required>
+
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="tel" id="phoneNumber" formControlName="phoneNumber" required>
+
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" formControlName="emailAddress" required>
+
+    <label for="idNum">Identification Number:</label>
+    <input type="text" id="idNum" formControlName="identificationNumber" required>
+
+    <label for="apartmentId">Apartment ID</label>
+    <input type="number" id="apartmentId" formControlName="apartmentId" required>
+
+    <input type="radio" value="ID" formControlName="identificationType" name="identificationType" required>ID
+    <input type="radio" value="PASSPORT" formControlName="identificationType" name="identificationType">PASSPORT
+
+    <button type="submit">Save</button>
+  </form>
+
+  <p *ngIf="errorMessage">{{ errorMessage }}</p>
+</section>

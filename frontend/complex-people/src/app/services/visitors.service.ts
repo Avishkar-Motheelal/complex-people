@@ -7,6 +7,7 @@ import {PersonHelper} from "../helper/person-helper";
 import {Apartment} from "../models/apartment.model";
 import {environment} from "../../environments/environment";
 import {Photo} from "../models/photo";
+import {NewVisitorDto} from "../models/new-visitor-dto.model";
 
 @Injectable({
   providedIn: 'root'
@@ -32,4 +33,15 @@ export class VisitorsService {
     )
 
   }
+
+
+  addVisitor(newVisitorDto: NewVisitorDto){
+    const queryParams = {
+      apartmentId: newVisitorDto.apartmentId,
+      photoId: 1,
+    }
+    console.log(queryParams)
+    return this.Http.post(this.visitUrl, newVisitorDto, {params: queryParams});
+  }
+
 }

@@ -28,6 +28,7 @@ import {ErrorInterceptor, JwtInterceptor} from "./_helpers";
 import {LogoutComponent} from './components/logout/logout.component';
 import {MaintenanceFormComponent} from "./components/maintenance-form/maintenance-form.component";
 import {AddMaintenanceComponent} from "./components/add-maintenance/add-maintenance.component";
+import { AddVisitorComponent } from './components/add-visitor/add-visitor.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import {AddMaintenanceComponent} from "./components/add-maintenance/add-maintena
     RegisterComponent,
     AccountDetailsComponent,
     LogoutComponent,
+    AddVisitorComponent,
   ],
   imports: [
     BrowserModule,
