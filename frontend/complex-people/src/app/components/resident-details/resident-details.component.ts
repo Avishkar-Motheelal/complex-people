@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Person} from "../../models/person.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PeopleService} from "../../services/people.service";
@@ -27,9 +27,10 @@ export class ResidentDetailsComponent {
     private formBuilder: FormBuilder,
     private router: Router,
     private accountService: AccountService,
-    private alertService: AlertService
+    private alertService: AlertService,
     private cardsService: CardsService,
-  ) {}
+  ) {
+  }
 
   form!: FormGroup;
   loading = false;
@@ -37,8 +38,25 @@ export class ResidentDetailsComponent {
   id = Number(this.route.snapshot.paramMap.get('id'));
 
   ngOnInit(): void {
-    this.getPerson();
+    this.loadPerson();
     this.getCards();
+    this.getPerson().pipe(first()).subscribe({
+      next: (person: Person) => {
+        this.form = this.formBuilder.group({
+          firstName: [person.firstName, Validators.required],
+          lastName: [person.lastName, Validators.required],
+          phoneNumber: [person.phoneNumber, Validators.required],
+          email: [person.emailAddress, Validators.required],
+          type: [person.identificationDocumentType, Validators.required],
+          number: [person.phoneNumber, Validators.required],
+          role: ['RESIDENT'],
+        });
+      },
+      error: error => {
+        this.alertService.error(error);
+        this.loading = false;
+      }
+    });
   }
 
   get formControls() {
@@ -46,9 +64,13 @@ export class ResidentDetailsComponent {
   }
 
   getPerson(): Observable<Person> {
-
     return this.peopleService.getPerson(this.id)
-    // .subscribe(person => this.person = person);
+  }
+
+  loadPerson() {
+    this.peopleService.getPerson(this.id).subscribe(person => {
+      this.person = person
+    });
   }
 
   onSubmit() {

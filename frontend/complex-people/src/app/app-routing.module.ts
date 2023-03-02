@@ -17,17 +17,6 @@ import {AddResidentComponent} from "./components/add-resident/add-resident.compo
 import {LogoutComponent} from "./components/logout/logout.component";
 
 const routes: Routes = [
-  {path: "", redirectTo: "dashboard", pathMatch: 'full'},
-  {path: "dashboard", component: DashboardComponent, pathMatch: 'full'},
-  {path: "maintenance", component: MaintenanceComponent, pathMatch: 'full'},
-  { path: 'apartments', component: ApartmentsComponent },
-  { path: 'residents', component: ResidentsComponent },
-  { path: 'residents/:id', component: ResidentDetailsComponent},
-  { path: 'apartments/:id', component: ApartmentDetailsComponent},
-  {path: 'visitors', component: VisitorsComponent},
-  {path: 'visitors/:id', component: VisitorsDetailsComponent},
-  {path: 'new-apartment', component: AddApartmentComponent},
-  {path: 'new-resident', component: AddResidentComponent},
   {path: "", redirectTo: "login", pathMatch: 'full'},
   {path: "dashboard", component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   {path: "maintenance", component: MaintenanceComponent, pathMatch: 'full', canActivate: [AuthGuard]},
@@ -39,6 +28,8 @@ const routes: Routes = [
   {path: "account/details", component: AccountDetailsComponent, canActivate: [AuthGuard]},
   {path: 'visitors', component: VisitorsComponent, canActivate: [AuthGuard]},
   {path: 'visitors/:id', component: VisitorsDetailsComponent, canActivate: [AuthGuard]},
+  {path: 'new-apartment', component: AddApartmentComponent, canActivate: [AuthGuard]},
+  {path: 'new-resident', component: AddResidentComponent, canActivate: [AuthGuard]},
   {path: "login", component: LoginComponent},
   {path: "logout", component: LogoutComponent},
 ];
